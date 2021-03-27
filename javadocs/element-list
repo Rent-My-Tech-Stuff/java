@@ -1,0 +1,8 @@
+com.lambdaschool.backend
+com.lambdaschool.backend.config
+com.lambdaschool.backend.controllers
+com.lambdaschool.backend.exceptions
+com.lambdaschool.backend.handlers
+com.lambdaschool.backend.models
+com.lambdaschool.backend.repository
+com.lambdaschool.backend.services
