@@ -51,6 +51,16 @@ public class User
     private String primaryemail;
 
     /**
+     * A list of rentals for this user
+     */
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    @JsonIgnoreProperties(value = "user",
+            allowSetters = true)
+    private List<Rental> rentals = new ArrayList<>();
+
+    /**
      * A list of emails for this user
      */
     @OneToMany(mappedBy = "user",
@@ -246,5 +256,15 @@ public class User
         }
 
         return rtnList;
+    }
+
+    public List<Rental> getRentals()
+    {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals)
+    {
+        this.rentals = rentals;
     }
 }

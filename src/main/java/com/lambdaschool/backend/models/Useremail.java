@@ -12,8 +12,7 @@ import javax.validation.constraints.Email;
  */
 @Entity
 @Table(name = "useremails")
-public class Useremail
-    extends Auditable
+public class Useremail extends Auditable
 {
     /**
      * The primary key (long) of the useremails table
@@ -38,18 +37,14 @@ public class Useremail
      * A user can have many emails.
      */
     @ManyToOne
-    @JoinColumn(name = "userid",
-        nullable = false)
-    @JsonIgnoreProperties(value = "useremails",
-        allowSetters = true)
+    @JoinColumn(name = "userid", nullable = false)
+    @JsonIgnoreProperties(value = "useremails", allowSetters = true)
     private User user;
 
     /**
      * The default controller is required by JPA
      */
-    public Useremail()
-    {
-    }
+    public Useremail() {}
 
     /**
      * Given the parameters, create a new useremail object
@@ -57,9 +52,7 @@ public class Useremail
      * @param user      the user (User) assigned to the email
      * @param useremail useremail (String) for the given user
      */
-    public Useremail(
-        User user,
-        String useremail)
+    public Useremail( User user, String useremail)
     {
         this.useremail = useremail;
         this.user = user;
