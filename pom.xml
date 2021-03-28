@@ -19,11 +19,12 @@
     </properties>
 
     <dependencies>
+        <!-- connects java to our db -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
+        <!-- can create REST apis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -39,7 +40,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <!--            <scope>runtime</scope>-->
+            <!--<scope>runtime</scope>-->
         </dependency>
 
         <dependency>
@@ -47,6 +48,7 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+        <!--basic tests-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -112,9 +114,10 @@
     </dependencies>
 
     <build>
-        <finalName>jrmmba-foundation</finalName>
+        <finalName>web39mytechstuff</finalName>
 
         <plugins>
+            <!-- connects maven with spring boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

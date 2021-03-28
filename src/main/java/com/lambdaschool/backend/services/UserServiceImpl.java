@@ -1,10 +1,7 @@
 package com.lambdaschool.backend.services;
 
 import com.lambdaschool.backend.exceptions.ResourceNotFoundException;
-import com.lambdaschool.backend.models.Role;
-import com.lambdaschool.backend.models.User;
-import com.lambdaschool.backend.models.UserRoles;
-import com.lambdaschool.backend.models.Useremail;
+import com.lambdaschool.backend.models.*;
 import com.lambdaschool.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.resource.OAuth2AccessDeniedException;
@@ -113,6 +110,18 @@ public class UserServiceImpl
             newUser.getRoles()
                 .add(new UserRoles(newUser,
                     addRole));
+        }
+
+        //OneToMany -> new resources that arent in the database yet
+        newUser.getRentals().clear();
+        for (Rental r : user.getRentals()) {
+            Rental newRental = new Rental();
+            newRental.setName(r.getName());
+            newRental.setDescription(r.getDescription());
+            newRental.setPrice(r.getPrice());
+            newRental.setUser(newUser);
+
+            newUser.getRentals().add(newRental);
         }
 
         newUser.getUseremails()

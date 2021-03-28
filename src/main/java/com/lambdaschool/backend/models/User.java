@@ -18,8 +18,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "users")
-public class User
-    extends Auditable
+public class User extends Auditable
 {
     /**
      * The primary key (long) of the users table.
@@ -31,8 +30,7 @@ public class User
     /**
      * The username (String). Cannot be null and must be unique
      */
-    @Column(nullable = false,
-        unique = true)
+    @Column(nullable = false, unique = true)
     private String username;
 
     /**
@@ -45,48 +43,36 @@ public class User
     /**
      * Primary email account of user. Could be used as the userid. Cannot be null and must be unique.
      */
-    @Column(nullable = false,
-        unique = true)
+    @Column(nullable = false, unique = true)
     @Email
     private String primaryemail;
 
     /**
      * A list of rentals for this user
      */
-    @OneToMany(mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    @JsonIgnoreProperties(value = "user",
-            allowSetters = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
     private List<Rental> rentals = new ArrayList<>();
 
     /**
      * A list of emails for this user
      */
-    @OneToMany(mappedBy = "user",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "user",
-        allowSetters = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
     private List<Useremail> useremails = new ArrayList<>();
 
     /**
      * Part of the join relationship between user and role
      * connects users to the user role combination
      */
-    @OneToMany(mappedBy = "user",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "user",
-        allowSetters = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "user", allowSetters = true)
     private Set<UserRoles> roles = new HashSet<>();
 
     /**
      * Default constructor used primarily by the JPA.
      */
-    public User()
-    {
-    }
+    public User() { }
 
     /**
      * Given the params, create a new user object

@@ -17,6 +17,7 @@ public class Rental extends Auditable
 
    private String description;
 
+   @Column(nullable = false)
    private double price;
 
    public Rental() { }
@@ -26,9 +27,9 @@ public class Rental extends Auditable
    @JsonIgnoreProperties(value = "rentals", allowSetters = true)
    private User user;
 
-   public Rental(long rentalid, String name, String description, double price)
+   public Rental(User user, String name, String description, double price)
    {
-      this.rentalid = rentalid;
+      this.user = user;
       this.name = name;
       this.description = description;
       this.price = price;
@@ -69,18 +70,12 @@ public class Rental extends Auditable
       return price;
    }
 
-   public void setPrice(double price)
-   {
-      this.price = price;
-   }
+   public void setPrice(double price) { this.price = price; }
 
    public User getUser()
    {
       return user;
    }
 
-   public void setUser(User user)
-   {
-      this.user = user;
-   }
+   public void setUser(User user) { this.user = user; }
 }
