@@ -169,11 +169,8 @@ public class SeedData implements CommandLineRunner
                         nameFaker.address().state(),
                         nameFaker.number().numberBetween(10000, 90000)
                         );
-                fakeUser.getRoles()
-                        .add(new UserRoles(fakeUser,
-                                r2));
-                fakeUser.getUseremails()
-                        .add(new Useremail(fakeUser, fakeValuesService.bothify("????##@gmail.com")));
+                fakeUser.getRoles().add(new UserRoles(fakeUser, r2));
+                fakeUser.getUseremails().add(new Useremail(fakeUser, fakeValuesService.bothify("????##@gmail.com")));
 
                 for (int j = 0; j < randomNumber; j++)
                 {

@@ -18,7 +18,7 @@ import java.util.List;
 @Transactional
 @Service(value = "userService")
 public class UserServiceImpl
-    implements UserService
+        implements UserService
 {
     /**
      * Connects this service to the User table.
@@ -36,10 +36,10 @@ public class UserServiceImpl
     private HelperFunctions helperFunctions;
 
     public User findUserById(long id) throws
-                                      ResourceNotFoundException
+            ResourceNotFoundException
     {
         return userrepos.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
     }
 
     @Override
@@ -57,8 +57,8 @@ public class UserServiceImpl
          * iterate over the iterator set and add each element to an array list.
          */
         userrepos.findAll()
-            .iterator()
-            .forEachRemaining(list::add);
+                .iterator()
+                .forEachRemaining(list::add);
         return list;
     }
 
@@ -67,7 +67,7 @@ public class UserServiceImpl
     public void delete(long id)
     {
         userrepos.findById(id)
-            .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
         userrepos.deleteById(id);
     }
 
@@ -90,13 +90,13 @@ public class UserServiceImpl
 
         if (user.getUserid() != 0)
         {
-            userrepos.findById(user.getUserid())
-                .orElseThrow(() -> new ResourceNotFoundException("User id " + user.getUserid() + " not found!"));
+            userrepos.findById(user.getUserid()).orElseThrow(() -> new ResourceNotFoundException("User id " + user.getUserid() + " not found!"));
             newUser.setUserid(user.getUserid());
         }
 
         newUser.setUsername(user.getUsername().toLowerCase());
         newUser.setPasswordNoEncrypt(user.getPassword());
+//        newUser.setPassword(user.getPassword());
         newUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
         newUser.setUsertype(user.getUsertype());
         newUser.setFirstname(user.getFirstname());
@@ -108,19 +108,20 @@ public class UserServiceImpl
         newUser.setZipcode(user.getZipcode());
 
         newUser.getRoles()
-            .clear();
+                .clear();
         for (UserRoles ur : user.getRoles())
         {
             Role addRole = roleService.findRoleById(ur.getRole()
-                .getRoleid());
+                    .getRoleid());
             newUser.getRoles()
-                .add(new UserRoles(newUser,
-                    addRole));
+                    .add(new UserRoles(newUser,
+                            addRole));
         }
 
         //OneToMany -> new resources that arent in the database yet
         newUser.getRentals().clear();
-        for (Rental r : user.getRentals()) {
+        for (Rental r : user.getRentals())
+        {
             Rental newRental = new Rental();
             newRental.setName(r.getName());
             newRental.setDescription(r.getDescription());
@@ -142,9 +143,7 @@ public class UserServiceImpl
 
     @Transactional
     @Override
-    public User update(
-        User user,
-        long id)
+    public User update( User user, long id)
     {
         User currentUser = findUserById(id);
 
@@ -153,7 +152,7 @@ public class UserServiceImpl
             if (user.getUsername() != null)
             {
                 currentUser.setUsername(user.getUsername()
-                    .toLowerCase());
+                        .toLowerCase());
             }
 
             if (user.getPassword() != null)
@@ -164,35 +163,35 @@ public class UserServiceImpl
             if (user.getPrimaryemail() != null)
             {
                 currentUser.setPrimaryemail(user.getPrimaryemail()
-                    .toLowerCase());
+                        .toLowerCase());
             }
 
             if (user.getRoles()
-                .size() > 0)
+                    .size() > 0)
             {
                 currentUser.getRoles()
-                    .clear();
+                        .clear();
                 for (UserRoles ur : user.getRoles())
                 {
                     Role addRole = roleService.findRoleById(ur.getRole()
-                        .getRoleid());
+                            .getRoleid());
 
                     currentUser.getRoles()
-                        .add(new UserRoles(currentUser,
-                            addRole));
+                            .add(new UserRoles(currentUser,
+                                    addRole));
                 }
             }
 
             if (user.getUseremails()
-                .size() > 0)
+                    .size() > 0)
             {
                 currentUser.getUseremails()
-                    .clear();
+                        .clear();
                 for (Useremail ue : user.getUseremails())
                 {
                     currentUser.getUseremails()
-                        .add(new Useremail(currentUser,
-                            ue.getUseremail()));
+                            .add(new Useremail(currentUser,
+                                    ue.getUseremail()));
                 }
             }
 
