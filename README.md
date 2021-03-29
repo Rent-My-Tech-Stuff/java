@@ -404,8 +404,6 @@ EXAMPLE RESPONSE
 <details>
 <summary>DELETE /api/rentals/rental/3</summary>
 
-AXIOS OBJECT SHAPE EXAMPLE
+NO RESPONSE
 
-```JSON
-```
 </details>

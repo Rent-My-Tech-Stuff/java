@@ -14,4 +14,6 @@ public interface RentalService {
     Rental addRental(Long userId, Rental rental);
 
     Rental updateRental(Long rentalId, Rental rentalBody);
+
+    void delete(Long id);
 }

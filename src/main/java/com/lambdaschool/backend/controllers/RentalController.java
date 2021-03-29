@@ -92,4 +92,11 @@ public class RentalController
         Rental rental = rentalServices.updateRental(rentalId, rentalBody);
         return new ResponseEntity<>(rental, HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "/rental/{rentalid}")
+    public ResponseEntity<?> getProductById( @PathVariable long rentalid)
+    {
+        rentalServices.delete(rentalid);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

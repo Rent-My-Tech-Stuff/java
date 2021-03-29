@@ -92,6 +92,16 @@ public class RentalServiceImpl implements RentalService {
 //                currentRental.getImage(),
 //                currentRental.getPrice_per_day());
 
+
         return getRentalById(rentalid);
+    }
+
+    @Transactional
+    @Override
+    public void delete(Long id)
+    {
+        rentalrepos.findById(id).orElseThrow(() -> new ResourceNotFoundException("Rental id " + id + " not found!"));
+        rentalrepos.deleteById(id);
+//        userrepos.removeUserWithNoRentals();
     }
 }
