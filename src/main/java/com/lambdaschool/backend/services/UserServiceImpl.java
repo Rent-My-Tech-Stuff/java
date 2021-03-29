@@ -95,11 +95,9 @@ public class UserServiceImpl
             newUser.setUserid(user.getUserid());
         }
 
-        newUser.setUsername(user.getUsername()
-            .toLowerCase());
+        newUser.setUsername(user.getUsername().toLowerCase());
         newUser.setPasswordNoEncrypt(user.getPassword());
-        newUser.setPrimaryemail(user.getPrimaryemail()
-            .toLowerCase());
+        newUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
         newUser.setUsertype(user.getUsertype());
         newUser.setFirstname(user.getFirstname());
         newUser.setLastname(user.getLastname());
@@ -133,13 +131,10 @@ public class UserServiceImpl
             newUser.getRentals().add(newRental);
         }
 
-        newUser.getUseremails()
-            .clear();
+        newUser.getUseremails().clear();
         for (Useremail ue : user.getUseremails())
         {
-            newUser.getUseremails()
-                .add(new Useremail(newUser,
-                    ue.getUseremail()));
+            newUser.getUseremails().add(new Useremail(newUser, ue.getUseremail()));
         }
 
         return userrepos.save(newUser);

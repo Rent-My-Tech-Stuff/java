@@ -117,14 +117,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * @throws Exception if the configuration fails
      */
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-        throws
-        Exception
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception
     {
-        endpoints.tokenStore(tokenStore)
-            .authenticationManager(authenticationManager);
+        endpoints.tokenStore(tokenStore) .authenticationManager(authenticationManager);
         // here instead of our clients requesting authentication at the endpoint /oauth/token, they request it at the endpoint /login
-        endpoints.pathMapping("/oauth/token",
-            "/login");
+        endpoints.pathMapping("/oauth/token", "/login");
     }
 }
