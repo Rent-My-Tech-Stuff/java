@@ -1,601 +1,19 @@
-# Foundation / Scaffolding for Build Week
+# Rent My Tech Stuff Java Backend 
 
 ## Introduction
 
-This is a basic database scheme with users, user emails, and user roles. This Java Spring REST API application will provide endpoints for clients to read various data sets contained in the application's data. This application will also form the basis of a user authentication application developed elsewhere in the course
+This is a basic database scheme with users and rentals. This Java Spring REST API application will provide endpoints for clients to read various data sets contained in the application's data. This application will also form the basis of a user authentication application developed elsewhere in the course
 
 ### Database layout
 
 The table layout is similar to the initial version with the following exceptions:
 
-* The join table userroles is explicitly created. This allows us to add additional columns to the join table
-* Since we are creating the join table ourselves, the Many to Many relationship that formed the join table is now two Many to One relationships
-* All tables now have audit fields
-
-Thus the new table layout is as follows
-
+* All tables have audit fields
 * User is the driving table.
-* Useremails have a Many-To-One relationship with User. Each User has many user email combinations. Each user email combination has only one User.
-* Roles have a Many-To-Many relationship with Users.
-
-![Image of Database Layout](usersfinaldb.png)
+* Rentals have a Many-To-One relationship with User. Each User has many rentals. Each rental has only one User.
+* Roles and useremai fields can be ignored. 
 
 Using the provided seed data, expand each endpoint below to see the output it generates.
-
-<details>
-<summary>http://localhost:2019/useremails/useremails</summary>
-
-```JSON
-[
-    {
-        "useremailid": 5,
-        "useremail": "admin@email.local",
-        "user": {
-            "userid": 4,
-            "username": "admin",
-            "primaryemail": "admin@lambdaschool.local",
-            "roles": [
-                {
-                    "role": {
-                        "roleid": 3,
-                        "name": "DATA"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 1,
-                        "name": "ADMIN"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 2,
-                        "name": "USER"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "useremailid": 6,
-        "useremail": "admin@mymail.local",
-        "user": {
-            "userid": 4,
-            "username": "admin",
-            "primaryemail": "admin@lambdaschool.local",
-            "roles": [
-                {
-                    "role": {
-                        "roleid": 3,
-                        "name": "DATA"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 1,
-                        "name": "ADMIN"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 2,
-                        "name": "USER"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "useremailid": 8,
-        "useremail": "cinnamon@mymail.local",
-        "user": {
-            "userid": 7,
-            "username": "cinnamon",
-            "primaryemail": "cinnamon@lambdaschool.local",
-            "roles": [
-                {
-                    "role": {
-                        "roleid": 2,
-                        "name": "USER"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 3,
-                        "name": "DATA"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "useremailid": 9,
-        "useremail": "hops@mymail.local",
-        "user": {
-            "userid": 7,
-            "username": "cinnamon",
-            "primaryemail": "cinnamon@lambdaschool.local",
-            "roles": [
-                {
-                    "role": {
-                        "roleid": 2,
-                        "name": "USER"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 3,
-                        "name": "DATA"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "useremailid": 10,
-        "useremail": "bunny@email.local",
-        "user": {
-            "userid": 7,
-            "username": "cinnamon",
-            "primaryemail": "cinnamon@lambdaschool.local",
-            "roles": [
-                {
-                    "role": {
-                        "roleid": 2,
-                        "name": "USER"
-                    }
-                },
-                {
-                    "role": {
-                        "roleid": 3,
-                        "name": "DATA"
-                    }
-                }
-            ]
-        }
-    },
-    {
-        "useremailid": 12,
-        "useremail": "barnbarn@email.local",
-        "user": {
-            "userid": 11,
-            "username": "barnbarn",
-            "primaryemail": "barnbarn@lambdaschool.local",
-            "roles": [
-                {
-                    "role": {
-                        "roleid": 2,
-                        "name": "USER"
-                    }
-                }
-            ]
-        }
-    }
-]
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/useremails/useremail/8</summary>
-
-```JSON
-{
-    "useremailid": 8,
-    "useremail": "cinnamon@mymail.local",
-    "user": {
-        "userid": 7,
-        "username": "cinnamon",
-        "primaryemail": "cinnamon@lambdaschool.local",
-        "roles": [
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
-            },
-            {
-                "role": {
-                    "roleid": 3,
-                    "name": "DATA"
-                }
-            }
-        ]
-    }
-}
-```
-
-</details>
-
-<details>
-<summary>DELETE http://localhost:2019/useremails/useremail/8</summary>
-
-```TEXT
-No Body Data
-
-Status OK
-```
-
-</details>
-
-
-<details>
-<summary>PUT http://localhost:2019/useremails/useremail/9/email/favbun@hops.local</summary>
-
-OUTPUT
-
-```TEXT
-Status OK
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/useremails/useremail/9</summary>
-
-```JSON
-{
-    "useremailid": 9,
-    "useremail": "favbun@hops.local",
-    "user": {
-        "userid": 7,
-        "username": "cinnamon",
-        "primaryemail": "cinnamon@lambdaschool.local",
-        "roles": [
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
-            },
-            {
-                "role": {
-                    "roleid": 3,
-                    "name": "DATA"
-                }
-            }
-        ]
-    }
-}
-```
-
-</details>
-
-<details>
-<summary>POST http://localhost:2019/useremails/user/14/email/favbun@hops.local</summary>
-
-OUTPUT
-
-```TEXT
-Status CREATED
-
-Location Header: http://localhost:2019/useremails/useremail/15
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/useremails/useremail/15</summary>
-
-```JSON
-{
-    "useremailid": 15,
-    "useremail": "favbun@hops.local",
-    "user": {
-        "userid": 14,
-        "username": "misskitty",
-        "primaryemail": "misskitty@school.lambda",
-        "roles": [
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
-            }
-        ]
-    }
-}
-```
-
-</details>
-
----
-
-<details>
-<summary>http://localhost:2019/roles/roles</summary>
-
-```JSON
-[
-    {
-        "roleid": 1,
-        "name": "ADMIN",
-        "users": [
-            {
-                "user": {
-                    "userid": 4,
-                    "username": "admin",
-                    "primaryemail": "admin@lambdaschool.local",
-                    "useremails": [
-                        {
-                            "useremailid": 5,
-                            "useremail": "admin@email.local"
-                        },
-                        {
-                            "useremailid": 6,
-                            "useremail": "admin@mymail.local"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "roleid": 2,
-        "name": "USER",
-        "users": [
-            {
-                "user": {
-                    "userid": 14,
-                    "username": "misskitty",
-                    "primaryemail": "misskitty@school.lambda",
-                    "useremails": [
-                        {
-                            "useremailid": 15,
-                            "useremail": "favbun@hops.local"
-                        }
-                    ]
-                }
-            },
-            {
-                "user": {
-                    "userid": 13,
-                    "username": "puttat",
-                    "primaryemail": "puttat@school.lambda",
-                    "useremails": []
-                }
-            },
-            {
-                "user": {
-                    "userid": 11,
-                    "username": "barnbarn",
-                    "primaryemail": "barnbarn@lambdaschool.local",
-                    "useremails": [
-                        {
-                            "useremailid": 12,
-                            "useremail": "barnbarn@email.local"
-                        }
-                    ]
-                }
-            },
-            {
-                "user": {
-                    "userid": 7,
-                    "username": "cinnamon",
-                    "primaryemail": "cinnamon@lambdaschool.local",
-                    "useremails": [
-                        {
-                            "useremailid": 9,
-                            "useremail": "favbun@hops.local"
-                        },
-                        {
-                            "useremailid": 10,
-                            "useremail": "bunny@email.local"
-                        }
-                    ]
-                }
-            },
-            {
-                "user": {
-                    "userid": 4,
-                    "username": "admin",
-                    "primaryemail": "admin@lambdaschool.local",
-                    "useremails": [
-                        {
-                            "useremailid": 5,
-                            "useremail": "admin@email.local"
-                        },
-                        {
-                            "useremailid": 6,
-                            "useremail": "admin@mymail.local"
-                        }
-                    ]
-                }
-            }
-        ]
-    },
-    {
-        "roleid": 3,
-        "name": "DATA",
-        "users": [
-            {
-                "user": {
-                    "userid": 4,
-                    "username": "admin",
-                    "primaryemail": "admin@lambdaschool.local",
-                    "useremails": [
-                        {
-                            "useremailid": 5,
-                            "useremail": "admin@email.local"
-                        },
-                        {
-                            "useremailid": 6,
-                            "useremail": "admin@mymail.local"
-                        }
-                    ]
-                }
-            },
-            {
-                "user": {
-                    "userid": 7,
-                    "username": "cinnamon",
-                    "primaryemail": "cinnamon@lambdaschool.local",
-                    "useremails": [
-                        {
-                            "useremailid": 9,
-                            "useremail": "favbun@hops.local"
-                        },
-                        {
-                            "useremailid": 10,
-                            "useremail": "bunny@email.local"
-                        }
-                    ]
-                }
-            }
-        ]
-    }
-]
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/roles/role/3</summary>
-
-```JSON
-{
-    "roleid": 3,
-    "name": "DATA",
-    "users": [
-        {
-            "user": {
-                "userid": 4,
-                "username": "admin",
-                "primaryemail": "admin@lambdaschool.local",
-                "useremails": [
-                    {
-                        "useremailid": 5,
-                        "useremail": "admin@email.local"
-                    },
-                    {
-                        "useremailid": 6,
-                        "useremail": "admin@mymail.local"
-                    }
-                ]
-            }
-        },
-        {
-            "user": {
-                "userid": 7,
-                "username": "cinnamon",
-                "primaryemail": "cinnamon@lambdaschool.local",
-                "useremails": [
-                    {
-                        "useremailid": 9,
-                        "useremail": "favbun@hops.local"
-                    },
-                    {
-                        "useremailid": 10,
-                        "useremail": "bunny@email.local"
-                    }
-                ]
-            }
-        }
-    ]
-}
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/roles/role/name/data</summary>
-
-```JSON
-{
-    "roleid": 3,
-    "name": "DATA",
-    "users": [
-        {
-            "user": {
-                "userid": 4,
-                "username": "admin",
-                "primaryemail": "admin@lambdaschool.local",
-                "useremails": [
-                    {
-                        "useremailid": 5,
-                        "useremail": "admin@email.local"
-                    },
-                    {
-                        "useremailid": 6,
-                        "useremail": "admin@mymail.local"
-                    }
-                ]
-            }
-        },
-        {
-            "user": {
-                "userid": 7,
-                "username": "cinnamon",
-                "primaryemail": "cinnamon@lambdaschool.local",
-                "useremails": [
-                    {
-                        "useremailid": 9,
-                        "useremail": "favbun@hops.local"
-                    },
-                    {
-                        "useremailid": 10,
-                        "useremail": "bunny@email.local"
-                    }
-                ]
-            }
-        }
-    ]
-}
-```
-
-</details>
-
-<details>
-<summary>POST http://localhost:2019/roles/role</summary>
-
-DATA
-
-```JSON
-{
-    "name" : "ANewRole"
-}
-```
-
-OUTPUT
-
-```TEXT
-Status CREATED
-
-Location Header: http://localhost:2019/roles/role/16
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/roles/role/name/anewrole</summary>
-
-```JSON
-{
-    "roleid": 16,
-    "name": "ANEWROLE",
-    "users": []
-}
-```
-
-</details>
-
-<details>
-<summary>PUT http://localhost:2019/roles/role/16</summary>
-
-DATA
-
-```JSON
-{
-    "name" : "ANewRole"
-}
-```
-
-OUTPUT
-
-```TEXT
-Status OK
-```
-
-</details>
 
 ---
 
@@ -604,111 +22,75 @@ Status OK
 
 ```JSON
 [
-    {
-        "userid": 4,
-        "username": "admin",
-        "primaryemail": "admin@lambdaschool.local",
-        "useremails": [
-            {
-                "useremailid": 5,
-                "useremail": "admin@email.local"
-            },
-            {
-                "useremailid": 6,
-                "useremail": "admin@mymail.local"
+  {
+    "userid": 4,
+    "username": "admin",
+    "primaryemail": "admin@lambdaschool.local",
+    "usertype": "owner",
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "address": "221B Baker Street",
+    "streetaddress": "221B Baker Street",
+    "city": "London",
+    "state": "London",
+    "zipcode": 88888,
+    "rentals": [],
+    "useremails": [
+        {
+            "useremailid": 5,
+            "useremail": "admin@email.local"
+        },
+        {
+            "useremailid": 6,
+            "useremail": "admin@mymail.local"
+        }
+    ],
+    "roles": [
+        {
+            "role": {
+                "roleid": 1,
+                "name": "ADMIN"
             }
-        ],
-        "roles": [
-            {
-                "role": {
-                    "roleid": 3,
-                    "name": "DATA"
-                }
-            },
-            {
-                "role": {
-                    "roleid": 1,
-                    "name": "ADMIN"
-                }
-            },
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
+        },
+        {
+            "role": {
+                "roleid": 2,
+                "name": "USER"
             }
-        ]
-    },
-    {
-        "userid": 7,
-        "username": "cinnamon",
-        "primaryemail": "cinnamon@lambdaschool.local",
-        "useremails": [
-            {
-                "useremailid": 9,
-                "useremail": "favbun@hops.local"
-            },
-            {
-                "useremailid": 10,
-                "useremail": "bunny@email.local"
+        },
+        {
+            "role": {
+                "roleid": 3,
+                "name": "DATA"
             }
-        ],
-        "roles": [
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
-            },
-            {
-                "role": {
-                    "roleid": 3,
-                    "name": "DATA"
-                }
-            }
-        ]
-    },
-    {
-        "userid": 11,
-        "username": "barnbarn",
-        "primaryemail": "barnbarn@lambdaschool.local",
-        "useremails": [
-            {
-                "useremailid": 12,
-                "useremail": "barnbarn@email.local"
-            }
-        ],
-        "roles": [
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
-            }
-        ]
+        }
+      ]
     },
     {
         "userid": 13,
-        "username": "puttat",
-        "primaryemail": "puttat@school.lambda",
-        "useremails": [],
-        "roles": [
+        "username": "anisha.schumm",
+        "primaryemail": "bernardo.kris@yahoo.com",
+        "usertype": "owner",
+        "firstname": "Tommie",
+        "lastname": "Farrell",
+        "address": "59794 Karl Forest",
+        "streetaddress": "58259 Kerry Shoals",
+        "city": "Lake Lurlene",
+        "state": "Oregon",
+        "zipcode": 77827,
+        "rentals": [
             {
-                "role": {
-                    "roleid": 2,
-                    "name": "USER"
-                }
+                "rentalid": 14,
+                "name": "Enormous Linen Keyboard",
+                "description": "Et sint eum harum laborum perspiciatis porro. Repudiandae recusandae distinctio aspernatur dolores assumenda sed quo. Voluptatem repellat a. Nihil quas animi ducimus.",
+                "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+                "price": 76.73
             }
-        ]
-    },
-    {
-        "userid": 14,
-        "username": "misskitty",
-        "primaryemail": "misskitty@school.lambda",
+        ],
         "useremails": [
             {
                 "useremailid": 15,
-                "useremail": "favbun@hops.local"
+                "useremail": "ggud88@gmail.com"
             }
         ],
         "roles": [
@@ -719,7 +101,7 @@ Status OK
                 }
             }
         ]
-    }
+      }
 ]
 ```
 
@@ -1019,6 +401,85 @@ Status OK
 No Body Data
 
 Status OK
+```
+
+</details>
+
+
+<details>
+<summary>http://localhost:2019/rentals/rentals</summary>
+
+```JSON
+[
+  {
+        "rentalid": 14,
+        "name": "Enormous Linen Keyboard",
+        "description": "Et sint eum harum laborum perspiciatis porro. Repudiandae recusandae distinctio aspernatur dolores assumenda sed quo. Voluptatem repellat a. Nihil quas animi ducimus.",
+        "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+        "price": 76.73,
+        "user": {
+            "userid": 13,
+            "username": "anisha.schumm",
+            "primaryemail": "bernardo.kris@yahoo.com",
+            "usertype": "owner",
+            "firstname": "Tommie",
+            "lastname": "Farrell",
+            "address": "59794 Karl Forest",
+            "streetaddress": "58259 Kerry Shoals",
+            "city": "Lake Lurlene",
+            "state": "Oregon",
+            "zipcode": 77827,
+            "useremails": [
+                {
+                    "useremailid": 15,
+                    "useremail": "ggud88@gmail.com"
+                }
+            ],
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 2,
+                        "name": "USER"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "rentalid": 17,
+        "name": "Ergonomic Cotton Car",
+        "description": "Quia ex quas at ea quo nihil consequatur. Alias explicabo consequatur dolorum. Quas rerum consequuntur architecto repellendus voluptatem.",
+        "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+        "price": 76.09,
+        "user": {
+            "userid": 16,
+            "username": "marianela.leffler",
+            "primaryemail": "brendon.corkery@gmail.com",
+            "usertype": "owner",
+            "firstname": "Miesha",
+            "lastname": "Zieme",
+            "address": "2541 Boyle Springs",
+            "streetaddress": "52241 Jast Bridge",
+            "city": "New Tamekia",
+            "state": "Tennessee",
+            "zipcode": 64968,
+            "useremails": [
+                {
+                    "useremailid": 20,
+                    "useremail": "yjeq51@gmail.com"
+                }
+            ],
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 2,
+                        "name": "USER"
+                    }
+                }
+            ]
+        }
+    }
+]
 ```
 
 </details>
