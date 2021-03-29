@@ -100,6 +100,14 @@ public class UserServiceImpl
         newUser.setPasswordNoEncrypt(user.getPassword());
         newUser.setPrimaryemail(user.getPrimaryemail()
             .toLowerCase());
+        newUser.setUsertype(user.getUsertype());
+        newUser.setFirstname(user.getFirstname());
+        newUser.setLastname(user.getLastname());
+        newUser.setAddress(user.getAddress());
+        newUser.setStreetaddress(user.getStreetaddress());
+        newUser.setCity(user.getCity());
+        newUser.setState(user.getState());
+        newUser.setZipcode(user.getZipcode());
 
         newUser.getRoles()
             .clear();

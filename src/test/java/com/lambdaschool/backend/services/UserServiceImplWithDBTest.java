@@ -116,9 +116,19 @@ public class UserServiceImplWithDBTest
         Role r2 = new Role("user");
         r2.setRoleid(2);
 
-        User u2 = new User("tiger",
-            "ILuvMath!",
-            "tiger@school.lambda");
+        User u2 = new User(
+                "tiger",
+                "1234567",
+                "tiger@school.lambda",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u2.getRoles()
             .add(new UserRoles(u2,
                 r2));
@@ -144,9 +154,19 @@ public class UserServiceImplWithDBTest
         Role r2 = new Role("user");
         r2.setRoleid(2);
 
-        User u2 = new User("tiger",
-            "ILuvMath!",
-            "tiger@school.lambda");
+        User u2 = new User(
+                "lily",
+                "1234567",
+                "lily@school.lambda",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u2.getRoles()
             .add(new UserRoles(u2,
                 r2));
@@ -173,9 +193,19 @@ public class UserServiceImplWithDBTest
         Role r2 = new Role("user");
         r2.setRoleid(2);
 
-        User u2 = new User("mojo",
-            "ILuvMath!",
-            "mojo@school.lambda");
+        User u2 = new User(
+                "mojo",
+                "1234567",
+                "mojo@school.lambda",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u2.getRoles()
             .add(new UserRoles(u2,
                 r2));
@@ -205,9 +235,19 @@ public class UserServiceImplWithDBTest
         Role r2 = new Role("user");
         r2.setRoleid(2);
 
-        User u2 = new User("cinnamon",
-            "password",
-            "cinnamon@school.lambda");
+        User u2 = new User(
+                "cinnamon",
+                "password",
+                "cinnamon@school.lambda",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u2.getRoles()
             .add(new UserRoles(u2,
                 r2));
@@ -243,9 +283,19 @@ public class UserServiceImplWithDBTest
         Role r2 = new Role("user");
         r2.setRoleid(2);
 
-        User u2 = new User("cinnamon",
-            "password",
-            "cinnamon@school.lambda");
+        User u2 = new User(
+                "cinnamon",
+                "password",
+                "cinnamon@school.lambda",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u2.getRoles()
             .add(new UserRoles(u2,
                 r2));

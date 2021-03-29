@@ -75,8 +75,17 @@ public class UserControllerUnitNoDBTest
 
         // admin, data, user
         User u1 = new User("admin",
-            "ILuvM4th!",
-            "admin@lambdaschool.test");
+                "password",
+                "admin@lambdaschool.local",
+                "renter",
+                "Admin",
+                "Admin",
+                "221B Baker Street",
+                "221B Baker Street",
+                "London",
+                "London",
+                88888
+        );
         u1.getRoles()
             .add(new UserRoles(u1,
                 r1));
@@ -106,9 +115,19 @@ public class UserControllerUnitNoDBTest
 
         // data, user
         ArrayList<UserRoles> datas = new ArrayList<>();
-        User u2 = new User("cinnamon",
-            "1234567",
-            "cinnamon@lambdaschool.test");
+        User u2 = new User(
+                "cinnamon",
+                "1234567",
+                "cinnamon@lambdaschool.local",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u1.getRoles()
             .add(new UserRoles(u2,
                 r2));
@@ -141,9 +160,19 @@ public class UserControllerUnitNoDBTest
         userList.add(u2);
 
         // user
-        User u3 = new User("testingbarn",
-            "ILuvM4th!",
-            "testingbarn@school.lambda");
+        User u3 = new User(
+                "barnbarn",
+                "ILuvM4th!",
+                "barnbarn@lambdaschool.local",
+                "user",
+                "Barn",
+                "Barn",
+                "324 Barn St.",
+                "324 Barn St",
+                "Chicago",
+                "IL",
+                60601
+        );
         u3.getRoles()
             .add(new UserRoles(u3,
                 r1));
@@ -158,25 +187,6 @@ public class UserControllerUnitNoDBTest
         u3.setUserid(103);
         userList.add(u3);
 
-        User u4 = new User("testingcat",
-            "password",
-            "testingcat@school.lambda");
-        u4.getRoles()
-            .add(new UserRoles(u4,
-                r2));
-
-        u4.setUserid(104);
-        userList.add(u4);
-
-        User u5 = new User("testingdog",
-            "password",
-            "testingdog@school.lambda");
-        u4.getRoles()
-            .add(new UserRoles(u5,
-                r2));
-
-        u5.setUserid(105);
-        userList.add(u5);
 
         RestAssuredMockMvc.webAppContextSetup(webApplicationContext);
 
@@ -186,9 +196,7 @@ public class UserControllerUnitNoDBTest
     }
 
     @After
-    public void tearDown() throws Exception
-    {
-    }
+    public void tearDown() throws Exception { }
 
     @Test
     public void listAllUsers() throws

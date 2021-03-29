@@ -24,10 +24,10 @@ import java.util.Random;
  */
 @Transactional
 @ConditionalOnProperty(
-    prefix = "command.line.runner",
-    value = "enabled",
-    havingValue = "true",
-    matchIfMissing = true)
+        prefix = "command.line.runner",
+        value = "enabled",
+        havingValue = "true",
+        matchIfMissing = true)
 @Component
 public class SeedData implements CommandLineRunner
 {
@@ -63,7 +63,7 @@ public class SeedData implements CommandLineRunner
     @Transactional
     @Override
     public void run(String[] args) throws
-                                   Exception
+            Exception
     {
         userService.deleteAll();
         roleService.deleteAll();
@@ -77,8 +77,17 @@ public class SeedData implements CommandLineRunner
 
         // admin, data, user
         User u1 = new User("admin",
-            "password",
-            "admin@lambdaschool.local");
+                "password",
+                "admin@lambdaschool.local",
+                "renter",
+                "Admin",
+                "Admin",
+                "221B Baker Street",
+                "221B Baker Street",
+                "London",
+                "London",
+                88888
+                );
         u1.getRoles().add(new UserRoles(u1, r1));
         u1.getRoles().add(new UserRoles(u1, r2));
         u1.getRoles().add(new UserRoles(u1, r3));
@@ -88,7 +97,19 @@ public class SeedData implements CommandLineRunner
         userService.save(u1);
 
         // data, user
-        User u2 = new User("cinnamon", "1234567", "cinnamon@lambdaschool.local");
+        User u2 = new User(
+                "cinnamon",
+                "1234567",
+                "cinnamon@lambdaschool.local",
+                "renter",
+                "Cinnamon",
+                "Buns",
+                "1234567 Street",
+                "1234567 Street",
+                "Cinncinati",
+                "Ohio",
+                1234567
+        );
         u2.getRoles().add(new UserRoles(u2, r2));
         u2.getRoles().add(new UserRoles(u2, r3));
         u2.getUseremails().add(new Useremail(u2, "cinnamon@mymail.local"));
@@ -97,18 +118,22 @@ public class SeedData implements CommandLineRunner
         userService.save(u2);
 
         // user
-        User u3 = new User("barnbarn", "ILuvM4th!", "barnbarn@lambdaschool.local");
+        User u3 = new User(
+                "barnbarn",
+                "ILuvM4th!",
+                "barnbarn@lambdaschool.local",
+                "user",
+                "Barn",
+                "Barn",
+                "324 Barn St.",
+                "324 Barn St",
+                "Chicago",
+                "IL",
+                60601
+        );
         u3.getRoles().add(new UserRoles(u3, r2));
         u3.getUseremails().add(new Useremail(u3, "barnbarn@email.local"));
         userService.save(u3);
-
-        User u4 = new User("puttat", "password", "puttat@school.lambda");
-        u4.getRoles().add(new UserRoles(u4, r2));
-        userService.save(u4);
-
-        User u5 = new User("misskitty", "password", "misskitty@school.lambda");
-        u5.getRoles().add(new UserRoles(u5, r2));
-        userService.save(u5);
 
         if (true)
         {
@@ -129,29 +154,37 @@ public class SeedData implements CommandLineRunner
                 User fakeUser;
                 Rental fakeRental;
 
-
-                fakeUser = new User(nameFaker.name()
-                    .username(),
-                    "password",
-                    nameFaker.internet()
-                        .emailAddress());
-                fakeUser.getRoles()
-                    .add(new UserRoles(fakeUser,
-                        r2));
-                fakeUser.getUseremails()
-                    .add(new Useremail(fakeUser, fakeValuesService.bothify("????##@gmail.com")));
-
                 int randomNumber = random.nextInt(10) + 1; // random number 1 through 10
+
+                fakeUser = new User(
+                        nameFaker.name().username(),
+                        "password",
+                        nameFaker.internet().emailAddress(),
+                        i > 5 ? "renter" : "user",
+                        nameFaker.name().firstName(),
+                        nameFaker.name().lastName(),
+                        nameFaker.address().streetAddress(),
+                        nameFaker.address().streetAddress(),
+                        nameFaker.address().city(),
+                        nameFaker.address().state(),
+                        nameFaker.number().numberBetween(10000, 90000)
+                        );
+                fakeUser.getRoles()
+                        .add(new UserRoles(fakeUser,
+                                r2));
+                fakeUser.getUseremails()
+                        .add(new Useremail(fakeUser, fakeValuesService.bothify("????##@gmail.com")));
+
                 for (int j = 0; j < randomNumber; j++)
                 {
                     String name = nameFaker.commerce().productName();
                     String trimmedName = name.replaceAll("\\s", "");
                     fakeUser.getRentals().add(new Rental(
-                        fakeUser,
-                        name,
-                        nameFaker.lorem().paragraph(),
-                        nameFaker.number().randomDouble(2, 1, 100),
-                      "https://source.unsplash.com//200x200?sig=incrementingIdentifier"
+                            fakeUser,
+                            name,
+                            nameFaker.lorem().paragraph(),
+                            nameFaker.number().randomDouble(2, 1, 100),
+                            "https://source.unsplash.com//200x200?sig=incrementingIdentifier"
                     ));
                 }
 
