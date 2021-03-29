@@ -72,7 +72,7 @@ public class RentalController
      * @param userId The primary key of the user you seek
      * @return JSON object of the user you seek
      */
-    @GetMapping(value = "/rentals/rental/user/{userId}", produces = "application/json")
+    @PostMapping(value = "/rentals/rental/user/{userId}", produces = "application/json")
     public ResponseEntity<?> addRentalsByUserId(@PathVariable Long userId, @RequestBody Rental rentalBody)
     {
         Rental rental = rentalServices.addRental(userId, rentalBody);

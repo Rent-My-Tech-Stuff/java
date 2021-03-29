@@ -345,3 +345,23 @@ EXAMPLE REPONSE
 ```
 
 </details>
+
+<h6>Update a rental</h6>
+<details>
+<summary>PUT /api/rentals/rental/3</summary>
+
+AXIOS OBJECT SHAPE EXAMPLE
+
+```JSON
+```
+</details>
+
+<h6>Delete a rental</h6>
+<details>
+<summary>DELETE /api/rentals/rental/3</summary>
+
+AXIOS OBJECT SHAPE EXAMPLE
+
+```JSON
+```
+</details>
