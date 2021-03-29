@@ -294,7 +294,54 @@ EXAMPLE REPONSE
     }
 ]
 ```
-
 </details>
 
+<h6>Add an item</h6>
+<details>
+<summary>http://localhost:2019/api/rentals/rental/3</summary>
 
+AXIOS OBJECT SHAPE EXAMPLE
+
+```JSON
+{
+    "name": "Green scarf",
+    "description": "Minima est nobis eos. Maiores corporis quis exercitationem molestias possimus reiciendis corrupti. Impedit et et impedit. Quibusdam quidem blanditiis.",
+    "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+    "price_per_day": 2.00
+}
+```
+
+EXAMPLE REPONSE
+
+```JSON
+{
+    "rental_id": 59,
+    "name": "Green scarf",
+    "description": "Minima est nobis eos. Maiores corporis quis exercitationem molestias possimus reiciendis corrupti. Impedit et et impedit. Quibusdam quidem blanditiis.",
+    "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+    "price_per_day": 2.0,
+    "user": {
+        "userid": 3,
+        "username": "admin",
+        "email": "admin@lambdaschool.local",
+        "firstname": "Admin",
+        "lastname": "Admin",
+        "address": "221B Baker Street",
+        "streetAddress": "221B Baker Street",
+        "city": "London",
+        "state": "London",
+        "zipcode": "88888",
+        "useremails": [],
+        "roles": [
+            {
+                "role": {
+                    "roleid": 1,
+                    "name": "OWNER"
+                }
+            }
+        ]
+    }
+}
+```
+
+</details>

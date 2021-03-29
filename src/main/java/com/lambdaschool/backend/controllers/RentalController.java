@@ -5,10 +5,7 @@ import com.lambdaschool.backend.services.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,7 +53,7 @@ public class RentalController
 
     /**
      * Returns a list of rentals based off a user id number
-     * <br>Example: http://localhost:2019/rentals/user/7
+     * <br>Example: http://localhost:2019/api/rentals/user/7
      *
      * @param userId The primary key of the user you seek
      * @return JSON object of the user you seek
@@ -66,6 +63,20 @@ public class RentalController
     {
         List<Rental> rentals = rentalServices.getRentalsByUserId(userId);
         return new ResponseEntity<>(rentals, HttpStatus.OK);
+    }
+
+    /**
+     * Add a rental based off a user id number
+     * <br>Example: http://localhost:2019/api/rentals/user/7
+     *
+     * @param userId The primary key of the user you seek
+     * @return JSON object of the user you seek
+     */
+    @GetMapping(value = "/rentals/rental/user/{userId}", produces = "application/json")
+    public ResponseEntity<?> addRentalsByUserId(@PathVariable Long userId, @RequestBody Rental rentalBody)
+    {
+        Rental rental = rentalServices.addRental(userId, rentalBody);
+        return new ResponseEntity<>(rental, HttpStatus.OK);
     }
 
 }

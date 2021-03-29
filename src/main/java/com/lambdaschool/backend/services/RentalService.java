@@ -10,4 +10,6 @@ public interface RentalService {
     Rental getRentalById(long id);
 
     List<Rental> getRentalsByUserId(Long userId);
+
+    Rental addRental(Long userId, Rental rental);
 }

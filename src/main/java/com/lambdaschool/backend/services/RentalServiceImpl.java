@@ -4,6 +4,7 @@ import com.lambdaschool.backend.exceptions.ResourceNotFoundException;
 import com.lambdaschool.backend.models.Rental;
 import com.lambdaschool.backend.models.User;
 import com.lambdaschool.backend.repository.RentalRepository;
+import com.lambdaschool.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +20,9 @@ public class RentalServiceImpl implements RentalService {
 
     @Autowired
     RentalRepository rentalrepos;
+
+    @Autowired
+    UserRepository userrepos;
 
     @Override
     public List<Rental> findAllRentals()
@@ -38,6 +42,15 @@ public class RentalServiceImpl implements RentalService {
     public List<Rental> getRentalsByUserId(Long userId)
     {
        return rentalrepos.findAllByUser_userid(userId);
+    }
+
+    @Override
+    public Rental addRental(Long userId, Rental rental)
+    {
+        User user = userrepos.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User id " + userId + " not found!"));
+        rental.setUser(user);
+
+        return rentalrepos.save(rental);
     }
 
     /**
