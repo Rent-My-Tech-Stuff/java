@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * The entry point for clients to access menu data.
  */
 @RestController
-@RequestMapping("/rentals")
+@RequestMapping("/api")
 public class RentalController
 {
     /**
@@ -26,7 +27,7 @@ public class RentalController
 
     /**
      * Returns a list of all rentals.
-     * <br>Example: <a href="http://localhost:2019/rentals/rentals">http://localhost:2019/rentals/rentals</a>.
+     * <br>Example: <a href="http://localhost:2019/api/rentals/rentals">http://localhost:2019/api/rentals/rental</a>.
      *
      * @return JSON list of all rentals with a status of OK.
      * @see RentalService#findAllRentals() RentalServices.findAllRentals()
@@ -37,4 +38,34 @@ public class RentalController
         List<Rental> myRentals = rentalServices.findAllRentals();
         return new ResponseEntity<>(myRentals, HttpStatus.OK);
     }
+
+    /**
+     * Returns a single rental based off a rental id number
+     * <br>Example: http://localhost:2019/api/rentals/rental/7
+     *
+     * @param rentalId The primary key of the user you seek
+     * @return JSON object of the rental you seek
+     * @see RentalService#getRentalById(long) RentalService.getRentalById(long)
+     */
+    @GetMapping(value = "/rental/{rentalId}", produces = "application/json")
+    public ResponseEntity<?> getRentalById(@PathVariable Long rentalId)
+    {
+        Rental rental = rentalServices.getRentalById(rentalId);
+        return new ResponseEntity<>(rental, HttpStatus.OK);
+    }
+
+    /**
+     * Returns a list of rentals based off a user id number
+     * <br>Example: http://localhost:2019/rentals/user/7
+     *
+     * @param userId The primary key of the user you seek
+     * @return JSON object of the user you seek
+     */
+    @GetMapping(value = "/rentals/user/{userId}", produces = "application/json")
+    public ResponseEntity<?> getRentalsByUserId(@PathVariable Long userId)
+    {
+        List<Rental> rentals = rentalServices.getRentalsByUserId(userId);
+        return new ResponseEntity<>(rentals, HttpStatus.OK);
+    }
+
 }

@@ -29,7 +29,7 @@ public class Rental extends Auditable
    private int rental_period;
 
    @ManyToOne
-   @JoinColumn(name = "user_id", nullable = false)
+   @JoinColumn(name = "userid", nullable = false)
    @JsonIgnoreProperties(value = "rentals", allowSetters = true)
    private User user;
 

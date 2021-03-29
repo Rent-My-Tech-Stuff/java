@@ -94,7 +94,7 @@ public class UserServiceImplNoDBTest
             .get(1)
             .setUseremailid(11);
 
-        u1.setUser_id(101);
+        u1.setUserid(101);
         userList.add(u1);
 
         // data, user
@@ -139,7 +139,7 @@ public class UserServiceImplNoDBTest
             .get(2)
             .setUseremailid(22);
 
-        u2.setUser_id(102);
+        u2.setUserid(102);
         userList.add(u2);
 
         // user
@@ -166,7 +166,7 @@ public class UserServiceImplNoDBTest
             .get(0)
             .setUseremailid(30);
 
-        u3.setUser_id(103);
+        u3.setUserid(103);
         userList.add(u3);
 
         User u4 = new User(
@@ -185,7 +185,7 @@ public class UserServiceImplNoDBTest
             .add(new UserRoles(u4,
                 r2));
 
-        u4.setUser_id(104);
+        u4.setUserid(104);
         userList.add(u4);
 
         User u5 = new User(
@@ -204,7 +204,7 @@ public class UserServiceImplNoDBTest
             .add(new UserRoles(u5,
                 r2));
 
-        u5.setUser_id(105);
+        u5.setUserid(105);
         userList.add(u5);
 
         MockitoAnnotations.initMocks(this);
@@ -366,7 +366,7 @@ public class UserServiceImplNoDBTest
         u2.getUseremails()
             .add(new Useremail(u2,
                 "tiger@tiger.local"));
-        u2.setUser_id(103L);
+        u2.setUserid(103L);
 
         Mockito.when(roleService.findRoleById(2))
             .thenReturn(r2);
@@ -379,7 +379,7 @@ public class UserServiceImplNoDBTest
 
         assertEquals(103L,
             userService.save(u2)
-                .getUser_id());
+                .getUserid());
     }
 
     @Test

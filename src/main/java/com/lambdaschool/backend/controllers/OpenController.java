@@ -81,14 +81,14 @@ public class OpenController
         // The location comes from a different controller!
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserURI = ServletUriComponentsBuilder.fromUriString(httpServletRequest.getServerName() + ":" + httpServletRequest.getLocalPort() + "/users/user/{userId}")
-            .buildAndExpand(newuser.getUser_id())
+            .buildAndExpand(newuser.getUserid())
             .toUri();
         responseHeaders.setLocation(newUserURI);
 
         // return the access token
         // To get the access token, surf to the endpoint /login just as if a client had done this.
         RestTemplate restTemplate = new RestTemplate();
-        String requestURI = "http://localhost" + ":" + httpServletRequest.getLocalPort() + "/login";
+        String requestURI = "http://localhost" + ":" + httpServletRequest.getLocalPort() + "/api/login";
 
         List<MediaType> acceptableMediaTypes = new ArrayList<>();
         acceptableMediaTypes.add(MediaType.APPLICATION_JSON);

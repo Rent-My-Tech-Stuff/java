@@ -109,7 +109,7 @@ public class UserControllerUnitNoDBTest
             .get(1)
             .setUseremailid(11);
 
-        u1.setUser_id(101);
+        u1.setUserid(101);
         userList.add(u1);
 
         // data, user
@@ -154,7 +154,7 @@ public class UserControllerUnitNoDBTest
             .get(2)
             .setUseremailid(22);
 
-        u2.setUser_id(102);
+        u2.setUserid(102);
         userList.add(u2);
 
         // user
@@ -181,7 +181,7 @@ public class UserControllerUnitNoDBTest
             .get(0)
             .setUseremailid(30);
 
-        u3.setUser_id(103);
+        u3.setUserid(103);
         userList.add(u3);
 
 

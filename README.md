@@ -11,7 +11,7 @@ The table layout is similar to the initial version with the following exceptions
 * All tables have audit fields
 * User is the driving table.
 * Rentals have a Many-To-One relationship with User. Each User has many rentals. Each rental has only one User.
-* Roles and useremai fields can be ignored. 
+* Roles and useremail fields can be ignored. 
 
 Using the provided seed data, expand each endpoint below to see the output it generates.
 
@@ -20,127 +20,11 @@ This backend is using the OAUTH2 protocol for authentication.
 
 ---
 
+<h6>Create a new user</h6>
 <details>
-<summary>http://localhost:2019/users/users</summary>
+<summary>POST /api/register</summary>
 
-```JSON
-[
-  {
-    "user_id": 4,
-    "username": "admin",
-    "email": "admin@lambdaschool.local",
-    "firstname": "Admin",
-    "lastname": "Admin",
-    "address": "221B Baker Street",
-    "streetAddress": "221B Baker Street",
-    "city": "London",
-    "state": "London",
-    "zipcode": "88888",
-    "rentals": [],
-    "roles": [
-        {
-            "role": {
-                "roleid": 1,
-                "name": "OWNER"
-            }
-        },
-        {
-            "role": {
-                "roleid": 2,
-                "name": "RENTER"
-            }
-        }
-      ]
-    },
-    {
-        "user_id": 13,
-        "username": "anisha.schumm",
-        "email": "bernardo.kris@yahoo.com",
-        "firstname": "Tommie",
-        "lastname": "Farrell",
-        "address": "59794 Karl Forest",
-        "streetAddress": "58259 Kerry Shoals",
-        "city": "Lake Lurlene",
-        "state": "Oregon",
-        "zipcode": "77827",
-        "rentals": [
-            {
-                "rental_id": 14,
-                "name": "Enormous Linen Keyboard",
-                "description": "Et sint eum harum laborum perspiciatis porro. Repudiandae recusandae distinctio aspernatur dolores assumenda sed quo. Voluptatem repellat a. Nihil quas animi ducimus.",
-                "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
-                "price": 76.73
-            }
-        ],
-        "roles": [
-            {
-                "role": {
-                    "roleid": 2,
-                    "name": "RENTER"
-                }
-            }
-        ]
-      }
-]
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/users/user/7</summary>
-
-```JSON
-{
-    "user_id": 7,
-    "username": "cinnamon",
-    "email": "cinnamon@lambdaschool.local",
-    "roles": [
-        {
-            "role": {
-                "roleid": 2,
-                "name": "RENTER"
-            }
-        }
-    ]
-}
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/users/user/name/cinnamon</summary>
-
-```JSON
-{
-    "user_id": 7,
-    "username": "cinnamon",
-    "email": "cinnamon@lambdaschool.local",
-    "roles": [
-        {
-            "role": {
-                "roleid": 2,
-                "name": "RENTER"
-            }
-        }
-    ]
-}
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/users/user/name/like/da</summary>
-
-```JSON
-[]
-```
-
-</details>
-
-<details>
-<summary>POST http://localhost:2019/users/user</summary>
-
-DATA
+AXIOS OBJECT SHAPE EXAMPLE
 
 ```JSON
 {
@@ -162,136 +46,52 @@ DATA
 }
 ```
 
-OUTPUT
+EXAMPLE RESPONSE
 
 ```TEXT
-No Body Data
+No Body 
 
-Location Header: http://localhost:2019/users/user/17
+Location Header: /api/user/17
 Status 201 Created
 ```
 
 </details>
 
+<h6>Login a new user</h6>
 <details>
-<summary>http://localhost:2019/users/user/name/mojo</summary>
+<summary>/api/login</summary>
+
+AXIOS EXAMPLE REQUEST
+
+```js
+axios
+  .post(
+    process.env.NODE_ENV === 'production'
+      ? 'https://<production name tbd>.herokuapp.com/api/login'
+      : 'http://localhost:2019/api/login',
+    `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
+    {
+      headers: {
+        // btoa is converting our client id/client secret into base64
+        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }
+  )
+  .then(res => {
+    localStorage.setItem('token', res.data.access_token);
+  });
+```
+
+Return a token (store in localStorage)
 
 </details>
 
+<h6>Get a list of all rentals</h6>
 <details>
-<summary>PUT http://localhost:2019/users/user/14</summary>
+<summary>http://localhost:2019/api/rentals</summary>
 
-DATA
-
-```JSON
-{
-    "username": "stumps",
-    "email": "stumps@lambdaschool.local",
-    "password" : "EarlGray123",
-    "roles": [
-        {  
-            "role": {
-                "roleid": 3
-            }
-        },
-        {  
-            "role": {
-                "roleid": 1
-            }
-        }
-    ]
-}
-```
-
-OUTPUT
-
-```TEXT
-No Body Data
-
-Status OK
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/users/user/name/stumps</summary>
-
-```JSON
-{
-    "user_id": 16,
-    "username": "stumps",
-    "email": "stumps@lambdaschool.local",
-    "roles": [
-        {
-            "role": {
-                "roleid": 1,
-                "name": "OWNER"
-            }
-        }
-    ]
-}
-```
-
-</details>
-
-<details>
-<summary>PATCH http://localhost:2019/users/user/7</summary>
-
-DATA
-
-```JSON
-{
-    "username": "cinabun",
-    "email": "cinabun@lambdaschool.home"
-}
-```
-
-OUTPUT
-
-```TEXT
-No Body Data
-
-Status OK
-```
-
-</details>
-
-<details>
-<summary>http://localhost:2019/users/user/name/cinabun</summary>
-
-</details>
-
-```JSON
-{
-    "user_id": 7,
-    "username": "cinabun",
-    "email": "cinabun@lambdaschool.home",
-    "roles": [
-        {
-            "role": {
-                "roleid": 2,
-                "name": "RENTER"
-            }
-        }
-    ]
-}
-```
-
-<details>
-
-<summary>DELETE http://localhost:2019/users/user/14</summary>
-
-```TEXT
-No Body Data
-
-Status OK
-```
-
-</details>
-
-
-<details>
-<summary>http://localhost:2019/rentals/rentals</summary>
+EXAMPLE RESPONSE
 
 ```JSON
 [
@@ -302,7 +102,7 @@ Status OK
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
         "price": 76.73,
         "user": {
-            "user_id": 13,
+            "userid": 13,
             "username": "anisha.schumm",
             "email": "bernardo.kris@yahoo.com",
             "firstname": "Tommie",
@@ -329,7 +129,7 @@ Status OK
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
         "price": 76.09,
         "user": {
-            "user_id": 16,
+            "userid": 16,
             "username": "marianela.leffler",
             "email": "brendon.corkery@gmail.com",
             "firstname": "Miesha",
@@ -353,3 +153,148 @@ Status OK
 ```
 
 </details>
+
+<h6>Get rental by id</h6>
+<details>
+<summary>http://localhost:2019/api/rental/:id</summary>
+
+EXAMPLE RESPONSE
+```JSON
+{
+    "rental_id": 13,
+    "name": "Lightweight Rubber Coat",
+    "description": "Cumque facilis dicta deleniti. Voluptates culpa accusantium quae minima rerum quia libero. Explicabo eaque omnis nihil voluptatum esse quia optio. Laborum velit iure. Corrupti voluptatum autem est.",
+    "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+    "price_per_day": 57.78,
+    "user": {
+        "userid": 12,
+        "username": "deangelo.mccullough",
+        "email": "leland.schroeder@gmail.com",
+        "firstname": "Andrew",
+        "lastname": "Morar",
+        "address": "833 Beahan Center",
+        "streetAddress": "8057 Huels Parks",
+        "city": "South Elden",
+        "state": "Indiana",
+        "zipcode": "79541-8594",
+        "useremails": [
+            {
+                "useremailid": 19,
+                "useremail": "qjte78@gmail.com"
+            }
+        ],
+        "roles": [
+            {
+                "role": {
+                    "roleid": 2,
+                    "name": "RENTER"
+                }
+            }
+        ]
+    }
+}
+```
+
+</details>
+
+<h6>Get rental by name or location search</h6>
+<details>
+<summary>http://localhost:2019/api/rentals/:rental/:location</summary>
+
+```js
+{
+  // pending
+}
+```
+
+</details>
+
+<h6>Get a listing of all owners</h6>
+<details>
+<summary>http://localhost:2019/roles/role/1</summary>
+
+EXAMPLE REPONSE
+
+```JSON
+{
+    "roleid": 1,
+    "name": "OWNER",
+    "users": [
+        {
+            "user": {
+                "userid": 3,
+                "username": "admin",
+                "email": "admin@lambdaschool.local",
+                "firstname": "Admin",
+                "lastname": "Admin",
+                "address": "221B Baker Street",
+                "streetAddress": "221B Baker Street",
+                "city": "London",
+                "state": "London",
+                "zipcode": "88888",
+                "rentals": [],
+                "useremails": [
+                    {
+                        "useremailid": 4,
+                        "useremail": "admin@email.local"
+                    },
+                    {
+                        "useremailid": 5,
+                        "useremail": "admin@mymail.local"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
+```
+</details>
+
+<h6>Get a listing of rentals by owner id</h6>
+<details>
+<summary>http://localhost:2019/api/rentals/3</summary>
+
+EXAMPLE REPONSE
+
+```JSON
+[
+    {
+        "rental_id": 13,
+        "name": "Intelligent Silk Knife",
+        "description": "Modi inventore optio minima iste voluptatem. Voluptatem soluta quibusdam est unde deserunt exercitationem sit. Officia autem porro cumque fugit harum.",
+        "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+        "price_per_day": 81.59,
+        "user": {
+            "userid": 12,
+            "username": "caren.haag",
+            "email": "hollie.dare@gmail.com",
+            "firstname": "Ola",
+            "lastname": "Oberbrunner",
+            "address": "65921 Rhonda Track",
+            "streetAddress": "49338 Walter Neck",
+            "city": "West Antoine",
+            "state": "Ohio",
+            "zipcode": "15568-9784",
+            "useremails": [
+                {
+                    "useremailid": 19,
+                    "useremail": "vsrb70@gmail.com"
+                }
+            ],
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 2,
+                        "name": "RENTER"
+                    }
+                }
+            ]
+        }
+    }
+]
+```
+
+</details>
+
+

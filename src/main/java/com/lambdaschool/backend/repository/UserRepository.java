@@ -1,15 +1,16 @@
 package com.lambdaschool.backend.repository;
 
 import com.lambdaschool.backend.models.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The CRUD repository connecting User to the rest of the application
  */
-public interface UserRepository
-    extends CrudRepository<User, Long>
+public interface UserRepository extends CrudRepository<User, Long>
 {
     /**
      * Find a user based off over username

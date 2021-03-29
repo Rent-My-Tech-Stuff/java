@@ -17,8 +17,7 @@ import java.util.List;
  */
 @Transactional
 @Service(value = "userService")
-public class UserServiceImpl
-        implements UserService
+public class UserServiceImpl implements UserService
 {
     /**
      * Connects this service to the User table.
@@ -88,10 +87,10 @@ public class UserServiceImpl
     {
         User newUser = new User();
 
-        if (user.getUser_id() != 0)
+        if (user.getUserid() != 0)
         {
-            userrepos.findById(user.getUser_id()).orElseThrow(() -> new ResourceNotFoundException("User id " + user.getUser_id() + " not found!"));
-            newUser.setUser_id(user.getUser_id());
+            userrepos.findById(user.getUserid()).orElseThrow(() -> new ResourceNotFoundException("User id " + user.getUserid() + " not found!"));
+            newUser.setUserid(user.getUserid());
         }
 
         newUser.setUsername(user.getUsername().toLowerCase());
@@ -209,4 +208,5 @@ public class UserServiceImpl
     {
         userrepos.deleteAll();
     }
+
 }

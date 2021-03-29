@@ -55,11 +55,8 @@ public class RolesController
      * @return JSON object of the role you seek
      * @see RoleService#findRoleById(long) RoleService.findRoleById(long)
      */
-    @GetMapping(value = "/role/{roleId}",
-        produces = "application/json")
-    public ResponseEntity<?> getRoleById(
-        @PathVariable
-            Long roleId)
+    @GetMapping(value = "/role/{roleId}", produces = "application/json")
+    public ResponseEntity<?> getRoleById( @PathVariable Long roleId)
     {
         Role r = roleService.findRoleById(roleId);
         return new ResponseEntity<>(r,

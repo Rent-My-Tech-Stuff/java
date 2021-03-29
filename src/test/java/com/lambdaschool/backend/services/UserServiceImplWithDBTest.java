@@ -171,7 +171,7 @@ public class UserServiceImplWithDBTest
         u2.getUseremails()
             .add(new Useremail(u2,
                 "tiger@tiger.local"));
-        u2.setUser_id(777);
+        u2.setUserid(777);
 
         User saveU2 = userService.save(u2);
 
@@ -209,7 +209,7 @@ public class UserServiceImplWithDBTest
         u2.getUseremails()
             .add(new Useremail(u2,
                 "mojo@corgi.local"));
-        u2.setUser_id(4);
+        u2.setUserid(4);
 
         User saveU2 = userService.save(u2);
 

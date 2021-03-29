@@ -76,7 +76,7 @@ public interface UserService
         long id);
 
     /**
-     * Deletes all record and their associated records from the database
+     * Deletes all records and their associated records from the database
      */
     public void deleteAll();
 }

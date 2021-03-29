@@ -51,18 +51,18 @@ public class ResourceServerConfig
                 "/swagger-ui.html",
                 "/v2/api-docs",
                 "/webjars/**",
-                "/createnewuser")
+                "/api/register")
             .permitAll()
             .antMatchers(HttpMethod.POST,
-                "/users/**")
+                "/api/**")
             .hasAnyRole("OWNER")
             .antMatchers(HttpMethod.DELETE,
-                "/users/**")
+                "/api/**")
             .hasAnyRole("OWNER")
             .antMatchers(HttpMethod.PUT,
-                "/users/**")
+                "/api/**")
             .hasAnyRole("OWNER")
-            .antMatchers("/users/**",
+            .antMatchers("/api/**",
                 "/useremails/**",
                 "/rentals/**",
                 "/oauth/revoke-token",

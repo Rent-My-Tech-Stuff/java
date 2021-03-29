@@ -21,7 +21,7 @@ import java.util.List;
  * The entry point for clients to access user data
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api")
 public class UserController
 {
     /**
@@ -32,12 +32,12 @@ public class UserController
 
     /**
      * Returns a list of all users
-     * <br>Example: <a href="http://localhost:2019/users/users">http://localhost:2019/users/users</a>
+     * <br>Example: <a href="http://localhost:2019/api/users">http://localhost:2019/api/users</a>
      *
      * @return JSON list of all users with a status of OK
      * @see UserService#findAll() UserService.findAll()
      */
-    @PreAuthorize("hasAnyRole('OWNER')")
+    @PreAuthorize("hasAnyRole('OWNER', 'RENTER')")
     @GetMapping(value = "/users", produces = "application/json")
     public ResponseEntity<?> listAllUsers()
     {
@@ -60,6 +60,7 @@ public class UserController
         return new ResponseEntity<>(u,
             HttpStatus.OK);
     }
+
 
     /**
      * Return a user object based on a given username
@@ -105,17 +106,17 @@ public class UserController
      * @throws URISyntaxException Exception if something does not work in creating the location header
      * @see UserService#save(User) UserService.save(User)
      */
-    @PostMapping(value = "/user", consumes = "application/json")
+    @PostMapping(value = "/register", consumes = "application/json")
     public ResponseEntity<?> addNewUser( @Valid @RequestBody User newuser) throws URISyntaxException
     {
-        newuser.setUser_id(0);
+        newuser.setUserid(0);
         newuser = userService.save(newuser);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{userid}")
-            .buildAndExpand(newuser.getUser_id())
+            .buildAndExpand(newuser.getUserid())
             .toUri();
         responseHeaders.setLocation(newUserURI);
 
@@ -140,7 +141,7 @@ public class UserController
     @PutMapping(value = "/user/{userid}", consumes = "application/json")
     public ResponseEntity<?> updateFullUser( @Valid @RequestBody User updateUser, @PathVariable long userid)
     {
-        updateUser.setUser_id(userid);
+        updateUser.setUserid(userid);
         userService.save(updateUser);
 
         return new ResponseEntity<>(HttpStatus.OK);
