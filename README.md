@@ -89,7 +89,7 @@ Return a token (store in localStorage)
 
 <h6>Get a list of all rentals</h6>
 <details>
-<summary>http://localhost:2019/api/rentals</summary>
+<summary>GET /api/rentals</summary>
 
 EXAMPLE RESPONSE
 
@@ -156,7 +156,7 @@ EXAMPLE RESPONSE
 
 <h6>Get rental by id</h6>
 <details>
-<summary>http://localhost:2019/api/rental/:id</summary>
+<summary>GET /api/rental/:id</summary>
 
 EXAMPLE RESPONSE
 ```JSON
@@ -199,7 +199,7 @@ EXAMPLE RESPONSE
 
 <h6>Get rental by name or location search</h6>
 <details>
-<summary>http://localhost:2019/api/rentals/:rental/:location</summary>
+<summary>GET /api/rentals/:rental/:location</summary>
 
 ```js
 {
@@ -211,7 +211,7 @@ EXAMPLE RESPONSE
 
 <h6>Get a listing of all owners</h6>
 <details>
-<summary>http://localhost:2019/roles/role/1</summary>
+<summary>GET /roles/role/1</summary>
 
 EXAMPLE REPONSE
 
@@ -253,7 +253,7 @@ EXAMPLE REPONSE
 
 <h6>Get a listing of rentals by owner id</h6>
 <details>
-<summary>http://localhost:2019/api/rentals/3</summary>
+<summary>GET /api/rentals/3</summary>
 
 EXAMPLE REPONSE
 
@@ -296,9 +296,9 @@ EXAMPLE REPONSE
 ```
 </details>
 
-<h6>Add an item</h6>
+<h6>Add a rental</h6>
 <details>
-<summary>http://localhost:2019/api/rentals/rental/3</summary>
+<summary>POST /api/rentals/rental/3</summary>
 
 AXIOS OBJECT SHAPE EXAMPLE
 
