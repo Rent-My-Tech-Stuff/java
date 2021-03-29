@@ -8,6 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Transactional
 @Service(value = "rentalService")
-public class RentalServiceImpl implements RentalService { }
+public class RentalServiceImpl implements RentalService {
+
+    @Autowired
+    RentalRepository rentalrepos;
+
+    @Override
+    public List<Rental> findAllRentals()
+    {
+        List<Rental> list = new ArrayList<>();
+        rentalrepos.findAll().iterator().forEachRemaining(list::add);
+        return list;
+    }
+}

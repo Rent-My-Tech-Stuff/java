@@ -121,7 +121,7 @@ public class SeedData implements CommandLineRunner
             FakeValuesService fakeValuesService = new FakeValuesService(new Locale("en-US"), new RandomService());
             Faker nameFaker = new Faker(new Locale("en-US"));
 
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 5; i++)
             {
                 new User();
                 new Rental();
@@ -141,26 +141,21 @@ public class SeedData implements CommandLineRunner
                 fakeUser.getUseremails()
                     .add(new Useremail(fakeUser, fakeValuesService.bothify("????##@gmail.com")));
 
-                fakeUser.getRentals().add(
-                        new Rental(
-                            fakeUser,
-                            nameFaker.commerce().productName(),
-                            nameFaker.lorem().sentence(),
-                            Double.parseDouble(nameFaker.commerce().price(24.00, 300.00))
-                        )
-                );
-
                 int randomNumber = random.nextInt(10) + 1; // random number 1 through 10
                 for (int j = 0; j < randomNumber; j++)
                 {
+                    String name = nameFaker.commerce().productName();
+                    String trimmedName = name.replaceAll("\\s", "");
                     fakeUser.getRentals().add(new Rental(
                         fakeUser,
-                        nameFaker.commerce().productName(),
+                        name,
                         nameFaker.lorem().paragraph(),
-                        nameFaker.number().randomDouble(2, 1, 100)
+                        nameFaker.number().randomDouble(2, 1, 100),
+                      "https://source.unsplash.com//200x200?sig=incrementingIdentifier"
                     ));
                 }
 
+                //  another pic source: https://picsum.photos/seed/picsum/200/300
                 userService.save(fakeUser);
 
             }

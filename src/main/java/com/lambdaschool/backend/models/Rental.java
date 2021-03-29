@@ -15,24 +15,28 @@ public class Rental extends Auditable
    @Column(nullable = false)
    private String name;
 
+   @Column( length = 100000 )
    private String description;
+
+   private String image;
 
    @Column(nullable = false)
    private double price;
-
-   public Rental() { }
 
    @ManyToOne
    @JoinColumn(name = "userid", nullable = false)
    @JsonIgnoreProperties(value = "rentals", allowSetters = true)
    private User user;
 
-   public Rental(User user, String name, String description, double price)
+   public Rental() { }
+
+   public Rental(User user, String name, String description, double price, String image)
    {
       this.user = user;
       this.name = name;
       this.description = description;
       this.price = price;
+      this.image = image;
    }
 
    public long getRentalid()
@@ -78,4 +82,8 @@ public class Rental extends Auditable
    }
 
    public void setUser(User user) { this.user = user; }
+
+   public String getImage() { return image; }
+
+   public void setImage(String image) { this.image = image; }
 }

@@ -119,6 +119,7 @@ public class UserServiceImpl
             newRental.setName(r.getName());
             newRental.setDescription(r.getDescription());
             newRental.setPrice(r.getPrice());
+            newRental.setImage(r.getImage());
             newRental.setUser(newUser);
 
             newUser.getRentals().add(newRental);
