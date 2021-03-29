@@ -77,14 +77,13 @@ public class UserControllerUnitNoDBTest
         User u1 = new User("admin",
                 "password",
                 "admin@lambdaschool.local",
-                "renter",
                 "Admin",
                 "Admin",
                 "221B Baker Street",
                 "221B Baker Street",
                 "London",
                 "London",
-                88888
+                "88888"
         );
         u1.getRoles()
             .add(new UserRoles(u1,
@@ -110,7 +109,7 @@ public class UserControllerUnitNoDBTest
             .get(1)
             .setUseremailid(11);
 
-        u1.setUserid(101);
+        u1.setUser_id(101);
         userList.add(u1);
 
         // data, user
@@ -119,14 +118,13 @@ public class UserControllerUnitNoDBTest
                 "cinnamon",
                 "1234567",
                 "cinnamon@lambdaschool.local",
-                "renter",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u1.getRoles()
             .add(new UserRoles(u2,
@@ -156,7 +154,7 @@ public class UserControllerUnitNoDBTest
             .get(2)
             .setUseremailid(22);
 
-        u2.setUserid(102);
+        u2.setUser_id(102);
         userList.add(u2);
 
         // user
@@ -164,14 +162,13 @@ public class UserControllerUnitNoDBTest
                 "barnbarn",
                 "ILuvM4th!",
                 "barnbarn@lambdaschool.local",
-                "user",
                 "Barn",
                 "Barn",
                 "324 Barn St.",
                 "324 Barn St",
                 "Chicago",
                 "IL",
-                60601
+                "60601"
         );
         u3.getRoles()
             .add(new UserRoles(u3,
@@ -184,7 +181,7 @@ public class UserControllerUnitNoDBTest
             .get(0)
             .setUseremailid(30);
 
-        u3.setUserid(103);
+        u3.setUser_id(103);
         userList.add(u3);
 
 

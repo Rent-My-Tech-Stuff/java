@@ -55,13 +55,13 @@ public class ResourceServerConfig
             .permitAll()
             .antMatchers(HttpMethod.POST,
                 "/users/**")
-            .hasAnyRole("ADMIN")
+            .hasAnyRole("OWNER")
             .antMatchers(HttpMethod.DELETE,
                 "/users/**")
-            .hasAnyRole("ADMIN")
+            .hasAnyRole("OWNER")
             .antMatchers(HttpMethod.PUT,
                 "/users/**")
-            .hasAnyRole("ADMIN")
+            .hasAnyRole("OWNER")
             .antMatchers("/users/**",
                 "/useremails/**",
                 "/rentals/**",
@@ -69,7 +69,7 @@ public class ResourceServerConfig
                 "/logout")
             .authenticated()
             .antMatchers("/roles/**")
-            .hasAnyRole("ADMIN")
+            .hasAnyRole("OWNER")
             .anyRequest()
             .denyAll()
             .and()

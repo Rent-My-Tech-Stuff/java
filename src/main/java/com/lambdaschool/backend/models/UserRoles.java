@@ -29,8 +29,7 @@ public class UserRoles
     @Id
     @ManyToOne
     @JoinColumn(name = "userid")
-    @JsonIgnoreProperties(value = "roles",
-        allowSetters = true)
+    @JsonIgnoreProperties(value = "roles", allowSetters = true)
     private User user;
 
     /**
@@ -40,8 +39,7 @@ public class UserRoles
     @Id
     @ManyToOne
     @JoinColumn(name = "roleid")
-    @JsonIgnoreProperties(value = "users",
-        allowSetters = true)
+    @JsonIgnoreProperties(value = "users", allowSetters = true)
     private Role role;
 
     /**
@@ -117,7 +115,7 @@ public class UserRoles
             return false;
         }
         UserRoles that = (UserRoles) o;
-        return ((user == null) ? 0 : user.getUserid()) == ((that.user == null) ? 0 : that.user.getUserid()) &&
+        return ((user == null) ? 0 : user.getUser_id()) == ((that.user == null) ? 0 : that.user.getUser_id()) &&
             ((role == null) ? 0 : role.getRoleid()) == ((that.role == null) ? 0 : that.role.getRoleid());
     }
 

@@ -15,6 +15,9 @@ The table layout is similar to the initial version with the following exceptions
 
 Using the provided seed data, expand each endpoint below to see the output it generates.
 
+### User Authentication
+This backend is using the OAUTH2 protocol for authentication.
+
 ---
 
 <details>
@@ -23,81 +26,57 @@ Using the provided seed data, expand each endpoint below to see the output it ge
 ```JSON
 [
   {
-    "userid": 4,
+    "user_id": 4,
     "username": "admin",
-    "primaryemail": "admin@lambdaschool.local",
-    "usertype": "owner",
+    "email": "admin@lambdaschool.local",
     "firstname": "Admin",
     "lastname": "Admin",
     "address": "221B Baker Street",
-    "streetaddress": "221B Baker Street",
+    "streetAddress": "221B Baker Street",
     "city": "London",
     "state": "London",
-    "zipcode": 88888,
+    "zipcode": "88888",
     "rentals": [],
-    "useremails": [
-        {
-            "useremailid": 5,
-            "useremail": "admin@email.local"
-        },
-        {
-            "useremailid": 6,
-            "useremail": "admin@mymail.local"
-        }
-    ],
     "roles": [
         {
             "role": {
                 "roleid": 1,
-                "name": "ADMIN"
+                "name": "OWNER"
             }
         },
         {
             "role": {
                 "roleid": 2,
-                "name": "USER"
-            }
-        },
-        {
-            "role": {
-                "roleid": 3,
-                "name": "DATA"
+                "name": "RENTER"
             }
         }
       ]
     },
     {
-        "userid": 13,
+        "user_id": 13,
         "username": "anisha.schumm",
-        "primaryemail": "bernardo.kris@yahoo.com",
-        "usertype": "owner",
+        "email": "bernardo.kris@yahoo.com",
         "firstname": "Tommie",
         "lastname": "Farrell",
         "address": "59794 Karl Forest",
-        "streetaddress": "58259 Kerry Shoals",
+        "streetAddress": "58259 Kerry Shoals",
         "city": "Lake Lurlene",
         "state": "Oregon",
-        "zipcode": 77827,
+        "zipcode": "77827",
         "rentals": [
             {
-                "rentalid": 14,
+                "rental_id": 14,
                 "name": "Enormous Linen Keyboard",
                 "description": "Et sint eum harum laborum perspiciatis porro. Repudiandae recusandae distinctio aspernatur dolores assumenda sed quo. Voluptatem repellat a. Nihil quas animi ducimus.",
                 "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
                 "price": 76.73
             }
         ],
-        "useremails": [
-            {
-                "useremailid": 15,
-                "useremail": "ggud88@gmail.com"
-            }
-        ],
         "roles": [
             {
                 "role": {
                     "roleid": 2,
-                    "name": "USER"
+                    "name": "RENTER"
                 }
             }
         ]
@@ -112,30 +91,14 @@ Using the provided seed data, expand each endpoint below to see the output it ge
 
 ```JSON
 {
-    "userid": 7,
+    "user_id": 7,
     "username": "cinnamon",
-    "primaryemail": "cinnamon@lambdaschool.local",
-    "useremails": [
-        {
-            "useremailid": 9,
-            "useremail": "favbun@hops.local"
-        },
-        {
-            "useremailid": 10,
-            "useremail": "bunny@email.local"
-        }
-    ],
+    "email": "cinnamon@lambdaschool.local",
     "roles": [
         {
             "role": {
                 "roleid": 2,
-                "name": "USER"
-            }
-        },
-        {
-            "role": {
-                "roleid": 3,
-                "name": "DATA"
+                "name": "RENTER"
             }
         }
     ]
@@ -149,30 +112,14 @@ Using the provided seed data, expand each endpoint below to see the output it ge
 
 ```JSON
 {
-    "userid": 7,
+    "user_id": 7,
     "username": "cinnamon",
-    "primaryemail": "cinnamon@lambdaschool.local",
-    "useremails": [
-        {
-            "useremailid": 9,
-            "useremail": "favbun@hops.local"
-        },
-        {
-            "useremailid": 10,
-            "useremail": "bunny@email.local"
-        }
-    ],
+    "email": "cinnamon@lambdaschool.local",
     "roles": [
         {
             "role": {
                 "roleid": 2,
-                "name": "USER"
-            }
-        },
-        {
-            "role": {
-                "roleid": 3,
-                "name": "DATA"
+                "name": "RENTER"
             }
         }
     ]
@@ -198,16 +145,8 @@ DATA
 ```JSON
 {
     "username": "Mojo",
-    "primaryemail": "mojo@lambdaschool.local",
+    "email": "mojo@lambdaschool.local",
     "password" : "Coffee123",
-    "useremails": [
-        {
-            "useremail": "mojo@mymail.local"
-        },
-        {
-            "useremail": "mojo@email.local"
-        }
-        ],
     "roles": [
         {
             "role": {
@@ -247,16 +186,8 @@ DATA
 ```JSON
 {
     "username": "stumps",
-    "primaryemail": "stumps@lambdaschool.local",
+    "email": "stumps@lambdaschool.local",
     "password" : "EarlGray123",
-    "useremails": [
-        {
-            "useremail": "stumps@mymail.local"
-        },
-        {
-            "useremail": "stumps@email.local"
-        }
-        ],
     "roles": [
         {  
             "role": {
@@ -287,30 +218,14 @@ Status OK
 
 ```JSON
 {
-    "userid": 16,
+    "user_id": 16,
     "username": "stumps",
-    "primaryemail": "stumps@lambdaschool.local",
-    "useremails": [
-        {
-            "useremailid": 19,
-            "useremail": "stumps@mymail.local"
-        },
-        {
-            "useremailid": 20,
-            "useremail": "stumps@email.local"
-        }
-    ],
+    "email": "stumps@lambdaschool.local",
     "roles": [
         {
             "role": {
                 "roleid": 1,
-                "name": "ADMIN"
-            }
-        },
-        {
-            "role": {
-                "roleid": 3,
-                "name": "DATA"
+                "name": "OWNER"
             }
         }
     ]
@@ -327,18 +242,7 @@ DATA
 ```JSON
 {
     "username": "cinabun",
-    "primaryemail": "cinabun@lambdaschool.home",
-    "useremails": [
-    {
-            "useremail": "cinnamon@mymail.home"
-    },
-    {
-            "useremail": "hops@mymail.home"
-    },
-    {
-            "useremail": "bunny@email.home"
-    }
-    ]
+    "email": "cinabun@lambdaschool.home"
 }
 ```
 
@@ -359,34 +263,14 @@ Status OK
 
 ```JSON
 {
-    "userid": 7,
+    "user_id": 7,
     "username": "cinabun",
-    "primaryemail": "cinabun@lambdaschool.home",
-    "useremails": [
-        {
-            "useremailid": 21,
-            "useremail": "cinnamon@mymail.home"
-        },
-        {
-            "useremailid": 22,
-            "useremail": "hops@mymail.home"
-        },
-        {
-            "useremailid": 23,
-            "useremail": "bunny@email.home"
-        }
-    ],
+    "email": "cinabun@lambdaschool.home",
     "roles": [
         {
             "role": {
                 "roleid": 2,
-                "name": "USER"
-            }
-        },
-        {
-            "role": {
-                "roleid": 3,
-                "name": "DATA"
+                "name": "RENTER"
             }
         }
     ]
@@ -412,68 +296,54 @@ Status OK
 ```JSON
 [
   {
-        "rentalid": 14,
+        "rental_id": 14,
         "name": "Enormous Linen Keyboard",
         "description": "Et sint eum harum laborum perspiciatis porro. Repudiandae recusandae distinctio aspernatur dolores assumenda sed quo. Voluptatem repellat a. Nihil quas animi ducimus.",
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
         "price": 76.73,
         "user": {
-            "userid": 13,
+            "user_id": 13,
             "username": "anisha.schumm",
-            "primaryemail": "bernardo.kris@yahoo.com",
-            "usertype": "owner",
+            "email": "bernardo.kris@yahoo.com",
             "firstname": "Tommie",
             "lastname": "Farrell",
             "address": "59794 Karl Forest",
-            "streetaddress": "58259 Kerry Shoals",
+            "streetAddress": "58259 Kerry Shoals",
             "city": "Lake Lurlene",
             "state": "Oregon",
-            "zipcode": 77827,
-            "useremails": [
-                {
-                    "useremailid": 15,
-                    "useremail": "ggud88@gmail.com"
-                }
-            ],
+            "zipcode": "77827",
             "roles": [
                 {
                     "role": {
                         "roleid": 2,
-                        "name": "USER"
+                        "name": "RENTER"
                     }
                 }
             ]
         }
     },
     {
-        "rentalid": 17,
+        "rental_id": 17,
         "name": "Ergonomic Cotton Car",
         "description": "Quia ex quas at ea quo nihil consequatur. Alias explicabo consequatur dolorum. Quas rerum consequuntur architecto repellendus voluptatem.",
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
         "price": 76.09,
         "user": {
-            "userid": 16,
+            "user_id": 16,
             "username": "marianela.leffler",
-            "primaryemail": "brendon.corkery@gmail.com",
-            "usertype": "owner",
+            "email": "brendon.corkery@gmail.com",
             "firstname": "Miesha",
             "lastname": "Zieme",
             "address": "2541 Boyle Springs",
-            "streetaddress": "52241 Jast Bridge",
+            "streetAddress": "52241 Jast Bridge",
             "city": "New Tamekia",
             "state": "Tennessee",
-            "zipcode": 64968,
-            "useremails": [
-                {
-                    "useremailid": 20,
-                    "useremail": "yjeq51@gmail.com"
-                }
-            ],
+            "zipcode": "64968",
             "roles": [
                 {
                     "role": {
                         "roleid": 2,
-                        "name": "USER"
+                        "name": "RENTER"
                     }
                 }
             ]

@@ -37,7 +37,7 @@ public class UserController
      * @return JSON list of all users with a status of OK
      * @see UserService#findAll() UserService.findAll()
      */
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('OWNER')")
     @GetMapping(value = "/users", produces = "application/json")
     public ResponseEntity<?> listAllUsers()
     {
@@ -85,7 +85,7 @@ public class UserController
      * @return A JSON list of users you seek
      * @see UserService#findByNameContaining(String) UserService.findByNameContaining(String)
      */
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('OWNER')")
     @GetMapping(value = "/user/name/like/{userName}", produces = "application/json")
     public ResponseEntity<?> getUserLikeName( @PathVariable String userName)
     {
@@ -108,14 +108,14 @@ public class UserController
     @PostMapping(value = "/user", consumes = "application/json")
     public ResponseEntity<?> addNewUser( @Valid @RequestBody User newuser) throws URISyntaxException
     {
-        newuser.setUserid(0);
+        newuser.setUser_id(0);
         newuser = userService.save(newuser);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserURI = ServletUriComponentsBuilder.fromCurrentRequest()
             .path("/{userid}")
-            .buildAndExpand(newuser.getUserid())
+            .buildAndExpand(newuser.getUser_id())
             .toUri();
         responseHeaders.setLocation(newUserURI);
 
@@ -140,7 +140,7 @@ public class UserController
     @PutMapping(value = "/user/{userid}", consumes = "application/json")
     public ResponseEntity<?> updateFullUser( @Valid @RequestBody User updateUser, @PathVariable long userid)
     {
-        updateUser.setUserid(userid);
+        updateUser.setUser_id(userid);
         userService.save(updateUser);
 
         return new ResponseEntity<>(HttpStatus.OK);

@@ -24,8 +24,7 @@ public class Role
     /**
      * The name (String) of the role. Cannot be null and must be unique.
      */
-    @Column(nullable = false,
-        unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
 
@@ -33,19 +32,14 @@ public class Role
      * Part of the join relationship between user and role
      * connects roles to the user role combination
      */
-    @OneToMany(mappedBy = "role",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    @JsonIgnoreProperties(value = "role",
-        allowSetters = true)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties(value = "role", allowSetters = true)
     private Set<UserRoles> users = new HashSet<>();
 
     /**
      * Default Constructor used primarily by the JPA.
      */
-    public Role()
-    {
-    }
+    public Role() {}
 
     /**
      * Given the name, create a new role object. User gets added later

@@ -88,21 +88,20 @@ public class UserServiceImpl
     {
         User newUser = new User();
 
-        if (user.getUserid() != 0)
+        if (user.getUser_id() != 0)
         {
-            userrepos.findById(user.getUserid()).orElseThrow(() -> new ResourceNotFoundException("User id " + user.getUserid() + " not found!"));
-            newUser.setUserid(user.getUserid());
+            userrepos.findById(user.getUser_id()).orElseThrow(() -> new ResourceNotFoundException("User id " + user.getUser_id() + " not found!"));
+            newUser.setUser_id(user.getUser_id());
         }
 
         newUser.setUsername(user.getUsername().toLowerCase());
         newUser.setPasswordNoEncrypt(user.getPassword());
 //        newUser.setPassword(user.getPassword());
-        newUser.setPrimaryemail(user.getPrimaryemail().toLowerCase());
-        newUser.setUsertype(user.getUsertype());
+        newUser.setEmail(user.getEmail().toLowerCase());
         newUser.setFirstname(user.getFirstname());
         newUser.setLastname(user.getLastname());
         newUser.setAddress(user.getAddress());
-        newUser.setStreetaddress(user.getStreetaddress());
+        newUser.setStreetAddress(user.getStreetAddress());
         newUser.setCity(user.getCity());
         newUser.setState(user.getState());
         newUser.setZipcode(user.getZipcode());
@@ -125,7 +124,7 @@ public class UserServiceImpl
             Rental newRental = new Rental();
             newRental.setName(r.getName());
             newRental.setDescription(r.getDescription());
-            newRental.setPrice(r.getPrice());
+            newRental.setPrice_per_day(r.getPrice_per_day());
             newRental.setImage(r.getImage());
             newRental.setUser(newUser);
 
@@ -160,9 +159,9 @@ public class UserServiceImpl
                 currentUser.setPasswordNoEncrypt(user.getPassword());
             }
 
-            if (user.getPrimaryemail() != null)
+            if (user.getEmail() != null)
             {
-                currentUser.setPrimaryemail(user.getPrimaryemail()
+                currentUser.setEmail(user.getEmail()
                         .toLowerCase());
             }
 

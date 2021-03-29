@@ -120,14 +120,13 @@ public class UserServiceImplWithDBTest
                 "tiger",
                 "1234567",
                 "tiger@school.lambda",
-                "renter",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u2.getRoles()
             .add(new UserRoles(u2,
@@ -158,14 +157,13 @@ public class UserServiceImplWithDBTest
                 "lily",
                 "1234567",
                 "lily@school.lambda",
-                "renter",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u2.getRoles()
             .add(new UserRoles(u2,
@@ -173,7 +171,7 @@ public class UserServiceImplWithDBTest
         u2.getUseremails()
             .add(new Useremail(u2,
                 "tiger@tiger.local"));
-        u2.setUserid(777);
+        u2.setUser_id(777);
 
         User saveU2 = userService.save(u2);
 
@@ -197,14 +195,13 @@ public class UserServiceImplWithDBTest
                 "mojo",
                 "1234567",
                 "mojo@school.lambda",
-                "renter",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u2.getRoles()
             .add(new UserRoles(u2,
@@ -212,7 +209,7 @@ public class UserServiceImplWithDBTest
         u2.getUseremails()
             .add(new Useremail(u2,
                 "mojo@corgi.local"));
-        u2.setUserid(4);
+        u2.setUser_id(4);
 
         User saveU2 = userService.save(u2);
 
@@ -239,14 +236,13 @@ public class UserServiceImplWithDBTest
                 "cinnamon",
                 "password",
                 "cinnamon@school.lambda",
-                "renter",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u2.getRoles()
             .add(new UserRoles(u2,
@@ -287,14 +283,13 @@ public class UserServiceImplWithDBTest
                 "cinnamon",
                 "password",
                 "cinnamon@school.lambda",
-                "renter",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u2.getRoles()
             .add(new UserRoles(u2,

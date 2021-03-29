@@ -67,30 +67,26 @@ public class SeedData implements CommandLineRunner
     {
         userService.deleteAll();
         roleService.deleteAll();
-        Role r1 = new Role("admin");
-        Role r2 = new Role("user");
-        Role r3 = new Role("data");
+        Role r1 = new Role("owner");
+        Role r2 = new Role("renter");
 
         r1 = roleService.save(r1);
         r2 = roleService.save(r2);
-        r3 = roleService.save(r3);
 
         // admin, data, user
         User u1 = new User("admin",
                 "password",
                 "admin@lambdaschool.local",
-                "owner",
                 "Admin",
                 "Admin",
                 "221B Baker Street",
                 "221B Baker Street",
                 "London",
                 "London",
-                88888
+                "88888"
                 );
         u1.getRoles().add(new UserRoles(u1, r1));
         u1.getRoles().add(new UserRoles(u1, r2));
-        u1.getRoles().add(new UserRoles(u1, r3));
         u1.getUseremails().add(new Useremail(u1, "admin@email.local"));
         u1.getUseremails().add(new Useremail(u1, "admin@mymail.local"));
 
@@ -101,17 +97,15 @@ public class SeedData implements CommandLineRunner
                 "cinnamon",
                 "1234567",
                 "cinnamon@lambdaschool.local",
-                "owner",
                 "Cinnamon",
                 "Buns",
                 "1234567 Street",
                 "1234567 Street",
                 "Cinncinati",
                 "Ohio",
-                1234567
+                "1234567"
         );
         u2.getRoles().add(new UserRoles(u2, r2));
-        u2.getRoles().add(new UserRoles(u2, r3));
         u2.getUseremails().add(new Useremail(u2, "cinnamon@mymail.local"));
         u2.getUseremails().add(new Useremail(u2, "hops@mymail.local"));
         u2.getUseremails().add(new Useremail(u2, "bunny@email.local"));
@@ -122,14 +116,13 @@ public class SeedData implements CommandLineRunner
                 "barnbarn",
                 "ILuvM4th!",
                 "barnbarn@lambdaschool.local",
-                "user",
                 "Barn",
                 "Barn",
                 "324 Barn St.",
                 "324 Barn St",
                 "Chicago",
                 "IL",
-                60601
+                "60601"
         );
         u3.getRoles().add(new UserRoles(u3, r2));
         u3.getUseremails().add(new Useremail(u3, "barnbarn@email.local"));
@@ -160,14 +153,13 @@ public class SeedData implements CommandLineRunner
                         nameFaker.name().username(),
                         "password",
                         nameFaker.internet().emailAddress(),
-                        i > 5 ? "renter" : "owner",
                         nameFaker.name().firstName(),
                         nameFaker.name().lastName(),
                         nameFaker.address().streetAddress(),
                         nameFaker.address().streetAddress(),
                         nameFaker.address().city(),
                         nameFaker.address().state(),
-                        nameFaker.number().numberBetween(10000, 90000)
+                        nameFaker.address().zipCode()
                         );
                 fakeUser.getRoles().add(new UserRoles(fakeUser, r2));
                 fakeUser.getUseremails().add(new Useremail(fakeUser, fakeValuesService.bothify("????##@gmail.com")));

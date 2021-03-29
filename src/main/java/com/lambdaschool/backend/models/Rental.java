@@ -10,43 +10,48 @@ public class Rental extends Auditable
 {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
-   private long rentalid;
+   private long rental_id;
 
    @Column(nullable = false)
    private String name;
+
+   private String category;
 
    @Column( length = 100000 )
    private String description;
 
    private String image;
 
+   @Column
+   private double price_per_day;
+
    @Column(nullable = false)
-   private double price;
+   private int rental_period;
 
    @ManyToOne
-   @JoinColumn(name = "userid", nullable = false)
+   @JoinColumn(name = "user_id", nullable = false)
    @JsonIgnoreProperties(value = "rentals", allowSetters = true)
    private User user;
 
    public Rental() { }
 
-   public Rental(User user, String name, String description, double price, String image)
+   public Rental(User user, String name, String description, double price_per_day, String image)
    {
       this.user = user;
       this.name = name;
       this.description = description;
-      this.price = price;
+      this.price_per_day = price_per_day;
       this.image = image;
    }
 
-   public long getRentalid()
+   public long getRental_id()
    {
-      return rentalid;
+      return rental_id;
    }
 
-   public void setRentalid(long rentalid)
+   public void setRental_id(long rentalid)
    {
-      this.rentalid = rentalid;
+      this.rental_id = rentalid;
    }
 
    public String getName()
@@ -69,12 +74,12 @@ public class Rental extends Auditable
       this.description = description;
    }
 
-   public double getPrice()
+   public double getPrice_per_day()
    {
-      return price;
+      return price_per_day;
    }
 
-   public void setPrice(double price) { this.price = price; }
+   public void setPrice_per_day(double price) { this.price_per_day = price; }
 
    public User getUser()
    {
