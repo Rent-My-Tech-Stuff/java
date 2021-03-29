@@ -10,7 +10,7 @@ public class Rental extends Auditable
 {
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
-   private long rental_id;
+   private long rentalid;
 
    @Column(nullable = false)
    private String name;
@@ -44,14 +44,16 @@ public class Rental extends Auditable
       this.image = image;
    }
 
-   public long getRental_id()
+   public long getRentalid()
+
    {
-      return rental_id;
+      return rentalid;
    }
 
-   public void setRental_id(long rentalid)
+   public void setRentalid(long rentalid)
+
    {
-      this.rental_id = rentalid;
+      this.rentalid = rentalid;
    }
 
    public String getName()

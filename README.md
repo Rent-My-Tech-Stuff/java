@@ -96,7 +96,7 @@ EXAMPLE RESPONSE
 ```JSON
 [
   {
-        "rental_id": 14,
+        "rentalid": 14,
         "name": "Enormous Linen Keyboard",
         "description": "Et sint eum harum laborum perspiciatis porro. Repudiandae recusandae distinctio aspernatur dolores assumenda sed quo. Voluptatem repellat a. Nihil quas animi ducimus.",
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
@@ -123,7 +123,7 @@ EXAMPLE RESPONSE
         }
     },
     {
-        "rental_id": 17,
+        "rentalid": 17,
         "name": "Ergonomic Cotton Car",
         "description": "Quia ex quas at ea quo nihil consequatur. Alias explicabo consequatur dolorum. Quas rerum consequuntur architecto repellendus voluptatem.",
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
@@ -161,7 +161,7 @@ EXAMPLE RESPONSE
 EXAMPLE RESPONSE
 ```JSON
 {
-    "rental_id": 13,
+    "rentalid": 13,
     "name": "Lightweight Rubber Coat",
     "description": "Cumque facilis dicta deleniti. Voluptates culpa accusantium quae minima rerum quia libero. Explicabo eaque omnis nihil voluptatum esse quia optio. Laborum velit iure. Corrupti voluptatum autem est.",
     "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
@@ -260,7 +260,7 @@ EXAMPLE REPONSE
 ```JSON
 [
     {
-        "rental_id": 13,
+        "rentalid": 13,
         "name": "Intelligent Silk Knife",
         "description": "Modi inventore optio minima iste voluptatem. Voluptatem soluta quibusdam est unde deserunt exercitationem sit. Officia autem porro cumque fugit harum.",
         "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
@@ -315,7 +315,7 @@ EXAMPLE REPONSE
 
 ```JSON
 {
-    "rental_id": 59,
+    "rentalid": 59,
     "name": "Green scarf",
     "description": "Minima est nobis eos. Maiores corporis quis exercitationem molestias possimus reiciendis corrupti. Impedit et et impedit. Quibusdam quidem blanditiis.",
     "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
@@ -348,11 +348,55 @@ EXAMPLE REPONSE
 
 <h6>Update a rental</h6>
 <details>
-<summary>PUT /api/rentals/rental/3</summary>
+<summary>PUT /api/rental/3</summary>
 
 AXIOS OBJECT SHAPE EXAMPLE
 
 ```JSON
+{
+    "name": "Red scarf",
+    "description": "Minima est nobis eos. Maiores corporis quis exercitationem molestias possimus reiciendis corrupti. Impedit et et impedit. Quibusdam quidem blanditiis.",
+    "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+    "price_per_day": 2.00
+}
+```
+
+EXAMPLE RESPONSE
+
+```JSON
+{
+    "rentalid": 13,
+    "name": "Red scarf",
+    "description": "Minima est nobis eos. Maiores corporis quis exercitationem molestias possimus reiciendis corrupti. Impedit et et impedit. Quibusdam quidem blanditiis.",
+    "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+    "price_per_day": 2.0,
+    "user": {
+        "userid": 12,
+        "username": "johnnie.zboncak",
+        "email": "lawanna.schultz@gmail.com",
+        "firstname": "Hwa",
+        "lastname": "Wolf",
+        "address": "824 Davis Land",
+        "streetAddress": "449 Curtis Pines",
+        "city": "Cruickshankfurt",
+        "state": "South Carolina",
+        "zipcode": "68275",
+        "useremails": [
+            {
+                "useremailid": 20,
+                "useremail": "nrba04@gmail.com"
+            }
+        ],
+        "roles": [
+            {
+                "role": {
+                    "roleid": 2,
+                    "name": "RENTER"
+                }
+            }
+        ]
+    }
+}
 ```
 </details>
 

@@ -79,4 +79,17 @@ public class RentalController
         return new ResponseEntity<>(rental, HttpStatus.OK);
     }
 
+    /**
+     * update a rental by id
+     * <br>Example: http://localhost:2019/api/rental/7
+     *
+     * @param rentalId The primary key of the rental you seek
+     * @return JSON object of the user you seek
+     */
+    @PutMapping(value = "/rental/{rentalId}", produces = "application/json")
+    public ResponseEntity<?> updateRental(@PathVariable Long rentalId, @RequestBody Rental rentalBody)
+    {
+        Rental rental = rentalServices.updateRental(rentalId, rentalBody);
+        return new ResponseEntity<>(rental, HttpStatus.OK);
+    }
 }

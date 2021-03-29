@@ -24,6 +24,9 @@ public class RentalServiceImpl implements RentalService {
     @Autowired
     UserRepository userrepos;
 
+    @Autowired
+    private UserAuditing userAuditing;
+
     @Override
     public List<Rental> findAllRentals()
     {
@@ -53,16 +56,42 @@ public class RentalServiceImpl implements RentalService {
         return rentalrepos.save(rental);
     }
 
-    /**
-     * TODO
-     * Updates the name of the role based on the given role id.
-     *
-     * @param uname  The username making this change
-     * @param rentalid The primary key (long) of the role to change
-     * @param name   The new name (String) of the role
-     */
     @Transactional
-    @Modifying
-    @Query(value = "UPDATE roles SET name = :name, lastmodifiedby = :uname, lastmodifieddate = CURRENT_TIMESTAMP WHERE roleid = :rentalid        ", nativeQuery = true)
-    void findBySearch( String uname, long rentalid, String name) { }
+    @Override
+    public Rental updateRental(Long rentalid, Rental rental)
+    {
+        Rental currentRental = rentalrepos.findById(rentalid).orElseThrow(() -> new ResourceNotFoundException("Rental id " + rentalid + " not found!"));
+
+        if (rental.getName() != null)
+        {
+            currentRental.setName(rental.getName());
+        }
+
+        if (rental.getDescription() != null)
+        {
+            currentRental.setDescription(rental.getDescription());
+        }
+
+        if (rental.getImage() != null)
+        {
+            currentRental.setImage(rental.getImage());
+        }
+
+        // TODO: Create a hasPrice since you cannot do a !== null against a number
+        currentRental.setPrice_per_day(rental.getPrice_per_day());
+
+        if (rental.getUser() != null)
+        {
+            currentRental.setUser(rental.getUser());
+        }
+
+//        rentalrepos.updateRentalInformation(userAuditing.getCurrentAuditor().get(),
+//                rentalid,
+//                currentRental.getName(),
+//                currentRental.getDescription(),
+//                currentRental.getImage(),
+//                currentRental.getPrice_per_day());
+
+        return getRentalById(rentalid);
+    }
 }
