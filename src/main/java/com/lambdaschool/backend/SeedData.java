@@ -30,6 +30,7 @@ import java.util.Random;
         matchIfMissing = true)
 @Component
 public class SeedData implements CommandLineRunner
+
 {
     /**
      * Connects the Role Service to this process
@@ -74,7 +75,8 @@ public class SeedData implements CommandLineRunner
         r2 = roleService.save(r2);
 
         // admin, data, user
-        User u1 = new User("admin",
+        User u1 = new User(
+                "admin",
                 "password",
                 "admin@lambdaschool.local",
                 "Admin",
