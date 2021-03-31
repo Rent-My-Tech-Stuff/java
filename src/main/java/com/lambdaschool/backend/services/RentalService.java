@@ -15,5 +15,7 @@ public interface RentalService {
 
     Rental updateRental(Long rentalId, Rental rentalBody);
 
+    List<Rental> findRentlasBySearch(String name, String category, String city, String state, String zipcode);
+
     void delete(Long id);
 }

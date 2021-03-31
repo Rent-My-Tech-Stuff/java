@@ -18,6 +18,9 @@ Using the provided seed data, expand each endpoint below to see the output it ge
 ### User Authentication
 This backend is using the OAUTH2 protocol for authentication.
 
+### Production deployment
+https://web39mytechstuff.herokuapp.com
+
 ---
 
 <h6>Create a new user</h6>
@@ -407,3 +410,79 @@ EXAMPLE RESPONSE
 NO RESPONSE
 
 </details>
+
+<h6>Search by rental name</h6>
+<details>
+<summary>GET /api/rentals/search?name=Keyboard</summary>
+
+EXAMPLE RESPONSE
+```JSON
+[
+    {
+        "rentalid": 14,
+        "name": "Enormous Aluminum Keyboard",
+        "description": "Minus nisi aliquid quis et aspernatur distinctio libero. Temporibus ut labore non. Sint ullam in. Nihil dolorum voluptatem.",
+        "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+        "price_per_day": 23.53,
+        "user": {
+            "userid": 12,
+            "username": "merrill.lowe",
+            "email": "farrah.cruickshank@hotmail.com",
+            "firstname": "Elfreda",
+            "lastname": "Cruickshank",
+            "address": "61941 Grant Shore",
+            "streetAddress": "648 Koss Row",
+            "city": "North Rafaelton",
+            "state": "Oklahoma",
+            "zipcode": "64673-0046",
+            "useremails": [
+                {
+                    "useremailid": 19,
+                    "useremail": "ocwi91@gmail.com"
+                }
+            ],
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 2,
+                        "name": "RENTER"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "rentalid": 43,
+        "name": "Practical Paper Keyboard",
+        "description": "Repellendus eos eaque. Beatae neque iusto sit. Dolor quis esse ex atque quo. Omnis sapiente quasi quaerat et voluptatem.",
+        "image": "https://source.unsplash.com//200x200?sig=incrementingIdentifier",
+        "price_per_day": 89.79,
+        "user": {
+            "userid": 42,
+            "username": "caryn.wyman",
+            "email": "kerri.schimmel@yahoo.com",
+            "firstname": "Keneth",
+            "lastname": "Champlin",
+            "address": "993 Conn Village",
+            "streetAddress": "01337 Earline Grove",
+            "city": "Wallaceberg",
+            "state": "Texas",
+            "zipcode": "09096",
+            "useremails": [
+                {
+                    "useremailid": 49,
+                    "useremail": "vpyr58@gmail.com"
+                }
+            ],
+            "roles": [
+                {
+                    "role": {
+                        "roleid": 2,
+                        "name": "RENTER"
+                    }
+                }
+            ]
+        }
+    }
+]
+```

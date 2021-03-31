@@ -104,4 +104,10 @@ public class RentalServiceImpl implements RentalService {
         rentalrepos.deleteById(id);
 //        userrepos.removeUserWithNoRentals();
     }
+
+
+    @Override
+    public List<Rental> findRentlasBySearch(String name, String category, String city, String state, String zipcode) {
+        return rentalrepos.findRentalsBySearch(name, category );
+    }
 }

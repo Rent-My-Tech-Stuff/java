@@ -37,6 +37,20 @@ public class RentalController
     }
 
     /**
+     * Returns a list of rentals by optional parameters.
+     * <br>Example: <a href="http://localhost:2019/api/rentals/search?name=name&category=category&city=city&state=state&zipcode=zipcode">http://localhost:2019/api/rentals/search?name=name&category=category&city=city&state=state&zipcode=zipcode</a>.
+     *
+     * @return JSON list of all rentals with a status of OK.
+     * @see RentalService#findAllRentals() RentalServices.findAllRentals()
+     */
+    @GetMapping(value = "/rentals/search", produces = "application/json")
+    public ResponseEntity<?> findRentalsBySearch(@RequestParam String name, @RequestParam(required = false) String category, @RequestParam(required = false) String city, @RequestParam(required = false) String state, @RequestParam(required = false) String zipcode )
+    {
+        List<Rental> rentals = rentalServices.findRentlasBySearch(name, category, city, state, zipcode);
+        return new ResponseEntity<>(rentals, HttpStatus.OK);
+    }
+
+    /**
      * Returns a single rental based off a rental id number
      * <br>Example: http://localhost:2019/api/rentals/rental/7
      *
